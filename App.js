@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AppButton title="DONE" onPress={() => alert('Say')} />
+        <AppButton isLoading={true} title="DONE" onPress={() => alert('Say')} />
       </View>
     );
   }
