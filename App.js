@@ -1,14 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Platform} from 'react-native';
-import {PlatformTouchable} from './src/components/PlatformTouchable';
+import {View, Text, StyleSheet} from 'react-native';
+import {AppButton} from './src/components/AppButton';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <PlatformTouchable>
-          <Text>Click Me</Text>
-        </PlatformTouchable>
+        <AppButton title="DONE" onPress={() => alert('Say')} />
       </View>
     );
   }
