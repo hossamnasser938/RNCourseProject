@@ -1,12 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {AppText} from './src/components/PlayAround/AppText';
+import {View, Text, StyleSheet, Platform} from 'react-native';
+import {PlatformTouchable} from './src/components/PlatformTouchable';
+
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AppText style={{color: 'purple'}}>Text 1</AppText>
-        <AppText>Text 2</AppText>
+        <PlatformTouchable>
+          <Text>Click Me</Text>
+        </PlatformTouchable>
       </View>
     );
   }
