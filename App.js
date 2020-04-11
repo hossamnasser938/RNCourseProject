@@ -1,12 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {WelcomeScreen} from './src/components/PlayAround/WelcomeScreen';
+import {Greeting} from './src/components/PlayAround/Greeting';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <WelcomeScreen />
+        <Greeting />
+        <Greeting name="Ahmed" />
+        <Greeting name="Mostafa" />
+        <Greeting greetingPhrase="Hi" name="Mostafa" />
       </View>
     );
   }
