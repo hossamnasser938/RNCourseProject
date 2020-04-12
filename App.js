@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {AddToCartButton} from './src/components/AddToCartButton';
+import {Greeting} from './src/components/PlayAround/FunctionalGreeting';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AddToCartButton />
+        <Greeting name="Mostafa" />
       </View>
     );
   }
