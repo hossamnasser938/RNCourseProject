@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {AppButton} from './src/components/AppButton';
+import {Counter} from './src/components/PlayAround/Counter';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AppButton isLoading={true} title="DONE" onPress={() => alert('Say')} />
+        <Counter />
       </View>
     );
   }
