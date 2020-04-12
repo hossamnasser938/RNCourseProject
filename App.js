@@ -1,12 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {AddToCartButton} from './src/components/AddToCartButton';
+import {Timer} from './src/components/Timer';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AddToCartButton />
+        <Timer
+          maxSeconds={5}
+          descending={true}
+          deadlineFunction={() => alert('time up')}
+        />
       </View>
     );
   }

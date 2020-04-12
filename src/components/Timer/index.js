@@ -2,41 +2,33 @@ import React from 'react';
 import {Text} from 'react-native';
 import {formatTimer} from '../../utils/helperFunctions';
 
-export class Timer extends React.Component {
-  constructor(props) {
-    super(props);
+export function Timer(props) {
+  const [seconds, setSeconds] = React.useState(
+    props.descending ? props.maxSeconds : 0,
+  );
 
-    this.state = {
-      seconds: props.descending ? props.maxSeconds : 0,
-    };
-  }
+  let interval;
 
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      this.setState(prevState => {
-        return {
-          seconds: this.props.descending
-            ? prevState.seconds - 1
-            : prevState.seconds + 1,
-        };
-      });
+  React.useEffect(() => {
+    interval = setInterval(() => {
+      setSeconds(prevSeconds =>
+        props.descending ? prevSeconds - 1 : prevSeconds + 1,
+      );
     }, 1000);
-  }
 
-  componentDidUpdate(prevProps, prevState) {
-    const deadlineVal = this.props.descending ? 0 : this.props.maxSeconds;
+    return () => {
+      clearInterval(interval);
+    };
+  }, [seconds]);
 
-    if (this.state.seconds === deadlineVal) {
-      clearInterval(this.interval);
-      this.props.deadlineFunction();
+  React.useEffect(() => {
+    const deadlineVal = props.descending ? 0 : props.maxSeconds;
+
+    if (seconds === deadlineVal) {
+      clearInterval(interval);
+      props.deadlineFunction();
     }
-  }
+  }, [seconds]);
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    return <Text>{formatTimer(this.state.seconds)}</Text>;
-  }
+  return <Text>{formatTimer(seconds)}</Text>;
 }
