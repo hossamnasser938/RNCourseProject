@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Counter} from './src/components/PlayAround/Counter';
+import {AddToCartButton} from './src/components/AddToCartButton';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Counter />
+        <AddToCartButton />
       </View>
     );
   }
