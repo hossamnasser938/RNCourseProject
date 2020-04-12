@@ -1,15 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Timer} from './src/components/Timer';
+import {Counter} from './src/components/PlayAround/FunctionalCounter';
+
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Timer
-          maxSeconds={5}
-          descending={false}
-          deadlineFunction={() => alert('ended')}
-        />
+        <Counter />
       </View>
     );
   }
