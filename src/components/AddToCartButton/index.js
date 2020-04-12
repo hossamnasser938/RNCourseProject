@@ -3,46 +3,40 @@ import {View, Text} from 'react-native';
 import {AppButton} from '../AppButton';
 import styles from './styles';
 
-export class AddToCartButton extends React.Component {
-  state = {
-    quantity: 0,
+export function AddToCartButton(props) {
+  const [quantity, setQuantity] = React.useState(0);
+
+  const incrementQuantityHandler = () => {
+    setQuantity(quantity + 1);
   };
 
-  incrementQuantityHandler = () => {
-    this.setState(prevState => ({quantity: prevState.quantity + 1}));
+  const decrementQuantityHandler = () => {
+    setQuantity(quantity - 1);
   };
 
-  decrementQuantityHandler = () => {
-    this.setState(prevState => ({quantity: prevState.quantity - 1}));
-  };
-
-  renderInitialButton = () => {
+  const renderInitialButton = () => {
     return (
       <AppButton
-        onPress={this.incrementQuantityHandler}
+        onPress={incrementQuantityHandler}
         title="ADD TO CART"
         wrapperStyle={styles.button}
       />
     );
   };
 
-  renderIncreaseDecreaseButton = () => {
+  const renderIncreaseDecreaseButton = () => {
     return (
       <View style={[styles.increaseDecreaseContainer, styles.button]}>
-        <Text onPress={this.decrementQuantityHandler}>-</Text>
-        <Text>{this.state.quantity}</Text>
-        <Text onPress={this.incrementQuantityHandler}>+</Text>
+        <Text onPress={decrementQuantityHandler}>-</Text>
+        <Text>{quantity}</Text>
+        <Text onPress={incrementQuantityHandler}>+</Text>
       </View>
     );
   };
 
-  render() {
-    return (
-      <View style={styles.wrapper}>
-        {this.state.quantity === 0
-          ? this.renderInitialButton()
-          : this.renderIncreaseDecreaseButton()}
-      </View>
-    );
-  }
+  return (
+    <View style={styles.wrapper}>
+      {quantity === 0 ? renderInitialButton() : renderIncreaseDecreaseButton()}
+    </View>
+  );
 }
