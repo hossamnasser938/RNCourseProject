@@ -2,17 +2,24 @@ import React from 'react';
 import {View, Button, Text} from 'react-native';
 
 export class Counter extends React.Component {
-  state = {
-    counter: 0,
-  };
+  constructor(props) {
+    super(props);
 
-  incrementHandler = () => {
+    this.state = {
+      counter: 0,
+    };
+
+    this.incrementHandler = this.incrementHandler.bind(this);
+    this.decrementHandler = this.decrementHandler.bind(this);
+  }
+
+  incrementHandler() {
     this.setState(prevState => ({counter: prevState.counter + 1}));
-  };
+  }
 
-  decrementHandler = () => {
+  decrementHandler() {
     this.setState(prevState => ({counter: prevState.counter - 1}));
-  };
+  }
 
   render() {
     return (
