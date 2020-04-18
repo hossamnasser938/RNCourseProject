@@ -27,9 +27,13 @@ export function AddToCartButton(props) {
   const renderIncreaseDecreaseButton = () => {
     return (
       <View style={[styles.increaseDecreaseContainer, styles.button]}>
-        <Text onPress={decrementQuantityHandler}>-</Text>
+        <Text style={styles.plusMinus} onPress={decrementQuantityHandler}>
+          -
+        </Text>
         <Text>{quantity}</Text>
-        <Text onPress={incrementQuantityHandler}>+</Text>
+        <Text style={styles.plusMinus} onPress={incrementQuantityHandler}>
+          +
+        </Text>
       </View>
     );
   };

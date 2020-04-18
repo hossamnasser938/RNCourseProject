@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
     borderColor: incDecBtnColor,
   },
   text: {fontSize: 24},
+  plusMinus: {
+    padding: 10,
+  },
 });
 
 export default styles;
