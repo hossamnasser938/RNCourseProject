@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, TextInput, Dimensions} from 'react-native';
+import {rem} from '../../utils/constants';
 
 const {width} = Dimensions.get('window');
 
@@ -7,7 +8,8 @@ export function Input(props) {
   return (
     <TextInput
       style={{
-        height: 40,
+        fontSize: 18 * rem,
+        height: 40 * rem,
         borderWidth: 1,
         borderColor: '#bbb',
         borderRadius: 10,
@@ -45,7 +47,7 @@ export function SignUpScreen(props) {
       </View>
 
       <View style={{alignItems: 'center'}}>
-        <Text>Sign Up</Text>
+        <Text style={{fontSize: 24 * rem, fontWeight: 'bold'}}>Sign Up</Text>
       </View>
     </View>
   );
