@@ -1,24 +1,28 @@
 import React, {useEffect} from 'react';
 import {View, Text, TextInput, Dimensions} from 'react-native';
-import {rem} from '../../utils/constants';
+
+import {ScaledSheet} from 'react-native-size-matters';
+
+const styles = ScaledSheet.create({
+  input: {
+    fontSize: '18@s',
+    height: '40@s',
+    borderWidth: 1,
+    borderColor: '#bbb',
+    borderRadius: 10,
+    marginBottom: 20,
+    padding: 10,
+  },
+  button: {
+    fontSize: '24@s',
+    fontWeight: 'bold',
+  },
+});
 
 const {width} = Dimensions.get('window');
 
 export function Input(props) {
-  return (
-    <TextInput
-      style={{
-        fontSize: 18 * rem,
-        height: 40 * rem,
-        borderWidth: 1,
-        borderColor: '#bbb',
-        borderRadius: 10,
-        marginBottom: 20,
-        padding: 10,
-      }}
-      placeholder={props.placeholder}
-    />
-  );
+  return <TextInput style={styles.input} placeholder={props.placeholder} />;
 }
 
 export function SignUpScreen(props) {
@@ -47,7 +51,7 @@ export function SignUpScreen(props) {
       </View>
 
       <View style={{alignItems: 'center'}}>
-        <Text style={{fontSize: 24 * rem, fontWeight: 'bold'}}>Sign Up</Text>
+        <Text style={styles.button}>Sign Up</Text>
       </View>
     </View>
   );
