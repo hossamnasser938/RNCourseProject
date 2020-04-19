@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, Text, TextInput, Dimensions} from 'react-native';
 
-import {ScaledSheet} from 'react-native-size-matters';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const styles = ScaledSheet.create({
+const styles = EStyleSheet.create({
   input: {
-    fontSize: '18@s',
-    height: '40@s',
+    fontSize: '18rem',
+    height: '40rem',
     borderWidth: 1,
     borderColor: '#bbb',
     borderRadius: 10,
@@ -14,7 +14,7 @@ const styles = ScaledSheet.create({
     padding: 10,
   },
   button: {
-    fontSize: '24@s',
+    fontSize: '24rem',
     fontWeight: 'bold',
   },
 });
