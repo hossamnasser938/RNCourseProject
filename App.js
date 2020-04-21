@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-
+import {CameraIcon} from './src/components/PlayAround/CameraIcon';
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('./assets/images/camera.png')} />
+        <CameraIcon dim={32} />
       </View>
     );
   }
