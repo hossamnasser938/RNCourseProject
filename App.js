@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {View, Text, StyleSheet} from 'react-native';
+import {Input} from './src/components/Input';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Icon name="ios-checkbox-outline" style={{fontSize: 32}} />
+        <Input placeholder="Email" stacked />
       </View>
     );
   }
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    marginHorizontal: 20,
   },
 });
 
