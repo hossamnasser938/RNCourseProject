@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {CameraIcon} from './src/components/PlayAround/CameraIcon';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <CameraIcon dim={32} />
+        <Icon name="ios-checkbox-outline" style={{fontSize: 32}} />
       </View>
     );
   }
