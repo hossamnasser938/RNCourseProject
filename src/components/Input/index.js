@@ -44,7 +44,11 @@ export function Input(props) {
           {...rest}
           placeholder={stacked ? '' : placeholder}
           style={[
-            {padding: 0, textAlign: placeholderPosition || 'left'},
+            {
+              flex: 1,
+              padding: 0,
+              textAlign: placeholderPosition || 'left',
+            },
             style,
           ]}
         />
