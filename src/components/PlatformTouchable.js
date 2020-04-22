@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  View,
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
@@ -7,6 +8,8 @@ import {
 
 export class PlatformTouchable extends React.Component {
   render() {
+    const {style, children, ...rest} = this.props;
+
     const Touchable =
       Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
 
@@ -17,6 +20,10 @@ export class PlatformTouchable extends React.Component {
    });
    */
 
-    return <Touchable {...this.props} />;
+    return (
+      <Touchable {...rest}>
+        <View style={style}>{children}</View>
+      </Touchable>
+    );
   }
 }
