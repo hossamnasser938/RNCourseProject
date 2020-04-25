@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {CategoryScreen} from './src/screens/Category';
+import {ProductScreen} from './src/screens/Product';
 
 class App extends React.Component {
   render() {
-    return <CategoryScreen />;
+    return <ProductScreen />;
   }
 }
 
