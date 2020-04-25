@@ -1,19 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {
-  dummyCategory,
-  dummyProductWithDiscount,
-  dummyProductWithoutDiscount,
-} from './src/utils/dummyData';
-import {Product} from './src/components/Product';
+import {HomeScreen} from './src/screens/Home';
 
 class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Product product={dummyProductWithoutDiscount} />
-      </View>
-    );
+    return <HomeScreen />;
   }
 }
 
