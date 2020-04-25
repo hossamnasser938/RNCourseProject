@@ -2,12 +2,13 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {CartItem} from './src/components/CartItem';
 import {dummyCartItem} from './src/utils/dummyData';
+import {CartScreen} from './src/screens/Cart';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <CartItem cartItem={dummyCartItem} />
+        <CartScreen />
       </View>
     );
   }

@@ -9,6 +9,8 @@ const styles = ScaledSheet.create({
   container: {
     flexDirection: 'row',
     padding: '10@s',
+    margin: '10@s',
+    backgroundColor: '#fff',
   },
   wrapper: {
     flex: 1,
