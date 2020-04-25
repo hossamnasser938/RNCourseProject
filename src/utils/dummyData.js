@@ -17,3 +17,7 @@ export const dummyProductWithoutDiscount = {
   price: 100,
   description: 'A very mnice product, bla bla bla ...',
 };
+
+export const dummyCartItem = {
+  product: dummyProductWithDiscount,
+};
