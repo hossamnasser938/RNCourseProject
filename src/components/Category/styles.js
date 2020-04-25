@@ -7,6 +7,9 @@ const imageWidth = width / 3;
 const imageHeight = imageWidth * 2;
 
 const styles = ScaledSheet.create({
+  container: {
+    alignItems: 'flex-start',
+  },
   image: {
     width: imageWidth,
     height: imageHeight,
