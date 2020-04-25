@@ -19,14 +19,14 @@ export function AddToCartButton(props) {
       <AppButton
         onPress={incrementQuantityHandler}
         title="ADD TO CART"
-        wrapperStyle={styles.button}
+        wrapperStyle={styles.wrapper}
       />
     );
   };
 
   const renderIncreaseDecreaseButton = () => {
     return (
-      <View style={[styles.increaseDecreaseContainer, styles.button]}>
+      <View style={[styles.increaseDecreaseContainer, styles.wrapper]}>
         <Text style={styles.plusMinus} onPress={decrementQuantityHandler}>
           -
         </Text>
@@ -38,9 +38,7 @@ export function AddToCartButton(props) {
     );
   };
 
-  return (
-    <View style={styles.wrapper}>
-      {quantity === 0 ? renderInitialButton() : renderIncreaseDecreaseButton()}
-    </View>
-  );
+  return quantity === 0
+    ? renderInitialButton()
+    : renderIncreaseDecreaseButton();
 }

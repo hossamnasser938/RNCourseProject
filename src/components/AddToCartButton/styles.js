@@ -7,9 +7,6 @@ const styles = StyleSheet.create({
     minWidth: 200,
     minHeight: 50,
   },
-  button: {
-    flex: 1,
-  },
   increaseDecreaseContainer: {
     flexDirection: 'row',
     backgroundColor: incDecBtnColor,
