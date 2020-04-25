@@ -1,13 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {dummyCategory} from './src/utils/dummyData';
-import {Price} from './src/components/Price';
+import {
+  dummyCategory,
+  dummyProductWithDiscount,
+  dummyProductWithoutDiscount,
+} from './src/utils/dummyData';
+import {Product} from './src/components/Product';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Price price={100} discount={0.2} />
+        <Product product={dummyProductWithoutDiscount} />
       </View>
     );
   }
