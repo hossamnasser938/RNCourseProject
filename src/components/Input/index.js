@@ -32,7 +32,7 @@ export function Input(props) {
         },
         wrapperStyle,
       ]}>
-      {stacked && <Text>{placeholder}</Text>}
+      {stacked && <Text style={{color: '#bbb'}}>{placeholder}</Text>}
 
       <View style={{flexDirection: 'row'}}>
         {renderIconLeft && (
@@ -63,7 +63,7 @@ export function Input(props) {
         <View
           style={{
             height: underlineHeight || 1,
-            backgroundColor: underlineColor || '#bbb',
+            backgroundColor: underlineColor || '#bbbbbb80',
           }}
         />
       )}
