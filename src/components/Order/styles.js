@@ -1,4 +1,5 @@
 import {ScaledSheet} from 'react-native-size-matters';
+import {TINT_COLOR} from '../../utils/colors';
 
 const styles = ScaledSheet.create({
   image: {
@@ -16,8 +17,17 @@ const styles = ScaledSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
+  statusWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
   title: {
     fontSize: '15@s',
+  },
+  statusText: {
+    fontSize: '16@s',
+    color: TINT_COLOR,
+    fontWeight: 'bold',
   },
 });
 

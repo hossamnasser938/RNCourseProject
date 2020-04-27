@@ -21,3 +21,9 @@ export const dummyProductWithoutDiscount = {
 export const dummyCartItem = {
   product: dummyProductWithDiscount,
 };
+
+export const dummyOrder = {
+  cartItems: [dummyCartItem],
+  cost: 150,
+  status: 'PLACED',
+};

@@ -12,7 +12,7 @@ export function CartItem(props) {
     <Card style={styles.container}>
       <Image source={{uri: cartItem.product.imageUrl}} style={styles.image} />
       <View style={styles.wrapper}>
-        <Text>{cartItem.product.title}</Text>
+        <Text style={styles.title}>{cartItem.product.title}</Text>
         <Price
           price={cartItem.product.price}
           discount={cartItem.product.discount}
