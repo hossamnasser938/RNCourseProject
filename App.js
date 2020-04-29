@@ -1,51 +1,45 @@
 import React from 'react';
-import {View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  FlatList,
+  SectionList,
+} from 'react-native';
 import {IonIcon} from './src/components/IonIcon';
 
-const users = [
+const normalUsers = [
   {name: 'Hossam', phone: '01023415623'},
   {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'AboBakr', phone: '01165826473'},
-  {name: 'Hossam', phone: '01023415623'},
-  {name: 'John', phone: '0111947464'},
+];
+
+const vipUsers = [
+  {name: 'Mossab', phone: '015464736445'},
+  {name: 'Ayman', phone: '015473926465'},
+];
+
+const sections = [
+  {title: 'Norma', data: normalUsers},
+  {title: 'VIP', data: vipUsers},
 ];
 
 class App extends React.Component {
   render() {
     return (
-      <FlatList
+      <SectionList
         keyExtractor={(item, index) => index.toString()}
-        data={users}
-        renderItem={({index, item}) => {
+        sections={sections}
+        renderSectionHeader={({section}) => <Text>{section.title}</Text>}
+        renderItem={({index, item, section}) => {
           const {name, phone} = item;
 
           return (
-            <View style={styles.userContainer}>
+            <View
+              style={[
+                styles.userContainer,
+                {backgroundColor: section.title === 'Norma' ? 'blue' : 'green'},
+              ]}>
               <View style={styles.wrapper}>
                 <IonIcon style={styles.icon} name="person" />
                 <Text style={styles.text}>{name}</Text>
