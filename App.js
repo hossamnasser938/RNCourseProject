@@ -1,56 +1,62 @@
 import React from 'react';
 import {
   View,
-  ScrollView,
   Text,
   StyleSheet,
   FlatList,
-  SectionList,
+  TouchableOpacity,
+  TouchableOpacityBase,
 } from 'react-native';
 import {IonIcon} from './src/components/IonIcon';
 
-const normalUsers = [
+const users = [
   {name: 'Hossam', phone: '01023415623'},
   {name: 'AboBakr', phone: '01165826473'},
-];
-
-const vipUsers = [
   {name: 'Mossab', phone: '015464736445'},
   {name: 'Ayman', phone: '015473926465'},
 ];
 
-const sections = [
-  {title: 'Norma', data: normalUsers},
-  {title: 'VIP', data: vipUsers},
-];
-
 class App extends React.Component {
+  keyExtractor = (item, index) => index.toString();
+  renderItem = ({index, item}) => {
+    const {name, phone} = item;
+    const isSelected = name === this.state.selectedUser;
+
+    return (
+      <TouchableOpacity
+        style={[
+          styles.userContainer,
+          {backgroundColor: isSelected ? 'red' : 'green'},
+        ]}
+        onPress={() => this.handleClick(name)}>
+        <View style={styles.wrapper}>
+          <IonIcon style={styles.icon} name="person" />
+          <Text style={styles.text}>{name}</Text>
+        </View>
+        <View style={styles.wrapper}>
+          <IonIcon style={styles.icon} name="call" />
+          <Text style={styles.text}>{phone}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  state = {selectedUser: 'Hossam'};
+
+  handleClick = userName => {
+    console.log('handle click is called with ' + userName);
+    this.setState({selectedUser: userName}, () => {
+      console.log(this.state);
+    });
+  };
+
   render() {
     return (
-      <SectionList
-        keyExtractor={(item, index) => index.toString()}
-        sections={sections}
-        renderSectionHeader={({section}) => <Text>{section.title}</Text>}
-        renderItem={({index, item, section}) => {
-          const {name, phone} = item;
-
-          return (
-            <View
-              style={[
-                styles.userContainer,
-                {backgroundColor: section.title === 'Norma' ? 'blue' : 'green'},
-              ]}>
-              <View style={styles.wrapper}>
-                <IonIcon style={styles.icon} name="person" />
-                <Text style={styles.text}>{name}</Text>
-              </View>
-              <View style={styles.wrapper}>
-                <IonIcon style={styles.icon} name="call" />
-                <Text style={styles.text}>{phone}</Text>
-              </View>
-            </View>
-          );
-        }}
+      <FlatList
+        keyExtractor={this.keyExtractor}
+        data={users}
+        renderItem={this.renderItem}
+        extraData={this.state.selectedUser}
       />
     );
   }
