@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
 import {IonIcon} from './src/components/IonIcon';
 
 const users = [
@@ -38,9 +38,11 @@ const users = [
 class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        {users.map(user => {
-          const {name, phone} = user;
+      <FlatList
+        keyExtractor={(item, index) => index.toString()}
+        data={users}
+        renderItem={({index, item}) => {
+          const {name, phone} = item;
 
           return (
             <View style={styles.userContainer}>
@@ -54,8 +56,8 @@ class App extends React.Component {
               </View>
             </View>
           );
-        })}
-      </View>
+        }}
+      />
     );
   }
 }
