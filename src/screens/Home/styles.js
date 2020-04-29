@@ -2,7 +2,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 const styles = ScaledSheet.create({
   container: {
-    padding: '5@s',
+    margin: '5@s',
   },
   headerText: {
     fontSize: '20@s',

@@ -37,23 +37,65 @@ export const dummyCategories = [
   dummyCategory6,
 ];
 
-export const dummyProductWithDiscount = {
-  title: 'Product',
+export const dummyProduct1 = {
+  title: 'Product1',
   imageUrl: 'https://reactjs.org/logo-og.png',
   price: 100,
   discount: 0.2,
   description: 'A very mnice product, bla bla bla ...',
 };
 
-export const dummyProductWithoutDiscount = {
-  title: 'Product',
+export const dummyProduct2 = {
+  title: 'Product2',
   imageUrl: 'https://reactjs.org/logo-og.png',
   price: 100,
+  discount: 0.2,
   description: 'A very mnice product, bla bla bla ...',
 };
 
+export const dummyProduct3 = {
+  title: 'Product3',
+  imageUrl: 'https://reactjs.org/logo-og.png',
+  price: 100,
+  discount: 0.2,
+  description: 'A very mnice product, bla bla bla ...',
+};
+
+export const dummyProduct4 = {
+  title: 'Product4',
+  imageUrl: 'https://reactjs.org/logo-og.png',
+  price: 100,
+  discount: 0.2,
+  description: 'A very mnice product, bla bla bla ...',
+};
+
+export const dummyProduct5 = {
+  title: 'Product5',
+  imageUrl: 'https://reactjs.org/logo-og.png',
+  price: 100,
+  discount: 0.2,
+  description: 'A very mnice product, bla bla bla ...',
+};
+
+export const dummyProduct6 = {
+  title: 'Product6',
+  imageUrl: 'https://reactjs.org/logo-og.png',
+  price: 100,
+  discount: 0.2,
+  description: 'A very mnice product, bla bla bla ...',
+};
+
+export const dummyProducts = [
+  dummyProduct1,
+  dummyProduct2,
+  dummyProduct3,
+  dummyProduct4,
+  dummyProduct5,
+  dummyProduct6,
+];
+
 export const dummyCartItem = {
-  product: dummyProductWithDiscount,
+  product: dummyProduct1,
 };
 
 export const dummyOrder = {
