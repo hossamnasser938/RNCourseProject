@@ -127,8 +127,47 @@ export const dummyCartItems = [
   dummyCartItem6,
 ];
 
-export const dummyOrder = {
+export const dummyOrder1 = {
   cartItems: [dummyCartItem1],
   cost: 150,
   status: 'PLACED',
 };
+
+export const dummyOrder2 = {
+  cartItems: [dummyCartItem2],
+  cost: 150,
+  status: 'PLACED',
+};
+
+export const dummyOrder3 = {
+  cartItems: [dummyCartItem3],
+  cost: 150,
+  status: 'PLACED',
+};
+
+export const dummyOrder4 = {
+  cartItems: [dummyCartItem4],
+  cost: 150,
+  status: 'PLACED',
+};
+
+export const dummyOrder5 = {
+  cartItems: [dummyCartItem5],
+  cost: 150,
+  status: 'PLACED',
+};
+
+export const dummyOrder6 = {
+  cartItems: [dummyCartItem6],
+  cost: 150,
+  status: 'PLACED',
+};
+
+export const dummyOrders = [
+  dummyOrder1,
+  dummyOrder2,
+  dummyOrder3,
+  dummyOrder4,
+  dummyOrder5,
+  dummyOrder6,
+];
