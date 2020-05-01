@@ -51,9 +51,11 @@ export function AccountScreen(props) {
   const {navigation} = props;
 
   return (
-    <SafeAreaView style={styles.container}>
-      {renderInfoSection()}
-      {renderButtonsSection(navigation)}
+    <SafeAreaView style={styles.outerContainer}>
+      <View style={styles.container}>
+        {renderInfoSection()}
+        {renderButtonsSection(navigation)}
+      </View>
     </SafeAreaView>
   );
 }

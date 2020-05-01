@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import {Input} from '../../components/Input';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
@@ -10,12 +10,14 @@ function renderSearchIcon() {
 
 export function SearchScreen(props) {
   return (
-    <SafeAreaView style={styles.container}>
-      <Input
-        placeholder="Type Here ..."
-        bordered
-        renderIconRight={renderSearchIcon}
-      />
+    <SafeAreaView style={styles.outerContainer}>
+      <View style={styles.container}>
+        <Input
+          placeholder="Type Here ..."
+          bordered
+          renderIconRight={renderSearchIcon}
+        />
+      </View>
     </SafeAreaView>
   );
 }
