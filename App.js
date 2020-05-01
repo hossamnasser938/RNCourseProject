@@ -1,16 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {AppContainer} from './src/navigation';
 
 class App extends React.Component {
   render() {
-    return (
-      <NavigationContainer>
-        <View style={styles.container}>
-          <Text>React Native Course</Text>
-        </View>
-      </NavigationContainer>
-    );
+    return <AppContainer isAuthenticated={false} />;
   }
 }
 
