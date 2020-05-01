@@ -4,7 +4,7 @@ import {AppContainer} from './src/navigation';
 
 class App extends React.Component {
   render() {
-    return <AppContainer isAuthenticated={false} />;
+    return <AppContainer isAuthenticated={true} />;
   }
 }
 
