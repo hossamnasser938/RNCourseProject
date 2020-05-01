@@ -6,11 +6,13 @@ const styles = ScaledSheet.create({
     height: '100@s',
     marginEnd: '10@s',
   },
-  container: {
-    flexDirection: 'row',
+  outerContainer: {
     padding: '10@s',
     margin: '10@s',
     backgroundColor: '#fff',
+  },
+  container: {
+    flexDirection: 'row',
   },
   wrapper: {
     flex: 1,
