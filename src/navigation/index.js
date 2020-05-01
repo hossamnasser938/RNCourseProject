@@ -1,10 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-
-function AuthStack(props) {
-  return <Text>Auth Stack</Text>;
-}
+import {AuthStack} from './AuthStack';
 
 function HomeTabs(props) {
   return <Text>Home Tabs</Text>;

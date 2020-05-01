@@ -10,6 +10,8 @@ function renderPhoneIcon() {
 }
 
 export function SignInScreen(props) {
+  const {navigation} = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.textWrapper}>
@@ -24,7 +26,12 @@ export function SignInScreen(props) {
         iconWrapperStyle={styles.iconWrapper}
       />
       <View style={styles.buttonWrapper}>
-        <AppButton title="DONE" />
+        <AppButton
+          title="DONE"
+          onPress={() => {
+            navigation.navigate('ConfirmationCodeScreen');
+          }}
+        />
       </View>
     </View>
   );
