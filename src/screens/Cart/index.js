@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, SafeAreaView} from 'react-native';
 import {AppButton} from '../../components/AppButton';
 import {CartItem} from '../../components/CartItem';
 import {dummyCartItems} from '../../utils/dummyData';
@@ -15,12 +15,12 @@ function renderCartItems(cartItems) {
 
 export function CartScreen(props) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {renderCartItems(dummyCartItems)}
       <View style={styles.wrapper}>
         <Text style={styles.totalText}>Total = 3456 $</Text>
         <AppButton title="CHECKOUT" titleStyle={styles.checkoutText} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import {PlatformTouchable} from '../../components/PlatformTouchable';
 import {IonIcon} from '../../components/IonIcon';
 import styles from './styles';
@@ -51,9 +51,9 @@ export function AccountScreen(props) {
   const {navigation} = props;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {renderInfoSection()}
       {renderButtonsSection(navigation)}
-    </View>
+    </SafeAreaView>
   );
 }
