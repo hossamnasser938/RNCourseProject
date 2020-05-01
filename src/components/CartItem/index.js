@@ -15,7 +15,7 @@ export function CartItem(props) {
     <Card style={styles.outerContainer}>
       <PlatformTouchable
         style={styles.container}
-        onPress={() => navigation.navigate('ProductScreen')}>
+        onPress={() => navigation.navigate('ProductScreen', {productId: 1})}>
         <Image source={{uri: cartItem.product.imageUrl}} style={styles.image} />
         <View style={styles.wrapper}>
           <Text style={styles.title}>{cartItem.product.title}</Text>

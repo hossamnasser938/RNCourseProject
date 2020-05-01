@@ -13,7 +13,7 @@ export function Product(props) {
   return (
     <PlatformTouchable
       style={styles.container}
-      onPress={() => navigation.navigate('ProductScreen')}>
+      onPress={() => navigation.navigate('ProductScreen', {productId: 1})}>
       <Card>
         <Image source={{uri: product.imageUrl}} style={styles.image} />
       </Card>

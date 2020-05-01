@@ -1,17 +1,17 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {dummyProductWithDiscount} from '../../utils/dummyData';
+import {dummyProduct1} from '../../utils/dummyData';
 import {IonIcon} from '../../components/IonIcon';
 import {Price} from '../../components/Price';
 import {AddToCartButton} from '../../components/AddToCartButton';
 import styles from './styles';
 
 function getProduct(productId) {
-  return dummyProductWithDiscount;
+  return dummyProduct1;
 }
 
 export function ProductScreen(props) {
-  const {productId} = props;
+  const {productId} = props.route.params;
 
   const product = getProduct(productId);
 
