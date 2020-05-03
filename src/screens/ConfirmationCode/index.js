@@ -3,23 +3,11 @@ import {View, Text} from 'react-native';
 import {Input} from '../../components/Input';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppButton} from '../../components/AppButton';
-import {validate} from '../../utils/validate';
+import {useInput} from '../../utils/useInput';
 import styles from './styles';
 
 export function ConfirmationCodeScreen(props) {
-  const [input, changeInput] = React.useState({
-    value: '',
-    isValid: false,
-    touched: false,
-  });
-
-  const updateInput = inputVal => {
-    changeInput({
-      value: inputVal,
-      isValid: validate(inputVal, [{key: 'isConfirmationCode'}]),
-      touched: true,
-    });
-  };
+  const [input, changeInput] = useInput('', [{key: 'isConfirmationCode'}]);
 
   const doneHandler = () => {
     if (!input.isValid) {
@@ -39,7 +27,7 @@ export function ConfirmationCodeScreen(props) {
         placeholderPosition="center"
         wrapperStyle={styles.inputWrapper}
         iconWrapperStyle={styles.iconWrapper}
-        onChangeText={updateInput}
+        onChangeText={changeInput}
         onSubmitEditing={doneHandler}
         keyboardType="numeric"
       />

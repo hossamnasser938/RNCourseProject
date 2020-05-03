@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {Input} from '../../components/Input';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppButton} from '../../components/AppButton';
-import {validate} from '../../utils/validate';
+import {useInput} from '../../utils/useInput';
 import styles from './styles';
 
 function renderPhoneIcon() {
@@ -13,19 +13,7 @@ function renderPhoneIcon() {
 export function SignInScreen(props) {
   const {navigation} = props;
 
-  const [input, changeInput] = React.useState({
-    value: '',
-    isValid: false,
-    touched: false,
-  });
-
-  const updateInput = inputVal => {
-    changeInput({
-      value: inputVal,
-      isValid: validate(inputVal, [{key: 'isPhone'}]),
-      touched: true,
-    });
-  };
+  const [input, changeInput] = useInput('', [{key: 'isPhone'}]);
 
   const doneHandler = () => {
     if (!input.isValid) {
@@ -48,7 +36,7 @@ export function SignInScreen(props) {
         placeholder="Phone"
         wrapperStyle={styles.inputWrapper}
         iconWrapperStyle={styles.iconWrapper}
-        onChangeText={updateInput}
+        onChangeText={changeInput}
         keyboardType="numeric"
         onSubmitEditing={doneHandler}
       />
