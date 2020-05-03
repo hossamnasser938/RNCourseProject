@@ -6,7 +6,7 @@ function validatePhone(enteredPhone) {
     return false;
   }
 
-  return Array.from(enteredPhone).every(char => char >= 0 && char <= 9);
+  return /^[0-9]+$/.test(enteredPhone);
 }
 
 function App(props) {
