@@ -1,7 +1,16 @@
 const ruleValidatorMapper = {
   isPhone: validatePhone,
   isMinimumChars: validateIsMinimumChars,
+  isConfirmationCode: validateConfirmationCode,
 };
+
+function validateConfirmationCode(userInput) {
+  if (userInput.length !== 4) {
+    return false;
+  }
+
+  return /^[0-9]+$/.test(userInput);
+}
 
 function validateIsMinimumChars(inputValue, {minimumChars}) {
   return inputValue.length >= minimumChars;
