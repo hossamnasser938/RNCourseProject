@@ -1,18 +1,34 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {AppContainer} from './src/navigation';
+import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 
-class App extends React.Component {
-  render() {
-    return <AppContainer isAuthenticated={true} />;
-  }
+function App(props) {
+  const [inputVal, changeInput] = React.useState('');
+  const submitHandler = () => {
+    alert('you entered ' + inputVal);
+  };
+
+  return (
+    <View style={styles.container}>
+      <TextInput
+        placeholder="Enter Phone"
+        style={styles.input}
+        onChangeText={changeInput}
+      />
+      <Button title="SUBMIT" onPress={submitHandler} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+  },
+  input: {
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    margin: 10,
   },
 });
 
