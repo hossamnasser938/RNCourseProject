@@ -1,14 +1,7 @@
 import React from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {Input} from './src/components/Input';
-
-function validatePhone(enteredPhone) {
-  if (enteredPhone.length !== 11) {
-    return false;
-  }
-
-  return /^[0-9]+$/.test(enteredPhone);
-}
+import {validate} from './src/utils/validate';
 
 function App(props) {
   const [input, changeInput] = React.useState({
@@ -20,7 +13,7 @@ function App(props) {
   const updateInput = inputVal => {
     changeInput({
       value: inputVal,
-      isValid: validatePhone(inputVal),
+      isValid: validate(inputVal, [{key: 'isMinimumChars', minimumChars: 4}]),
       touched: true,
     });
   };
