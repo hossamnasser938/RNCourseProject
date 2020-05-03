@@ -10,14 +10,19 @@ function validatePhone(enteredPhone) {
 }
 
 function App(props) {
-  const [inputVal, changeInput] = React.useState('');
+  const [input, changeInput] = React.useState({value: '', isValid: false});
+
+  const updateInput = inputVal => {
+    changeInput({value: inputVal, isValid: validatePhone(inputVal)});
+  };
+
   const submitHandler = () => {
-    if (!validatePhone(inputVal)) {
+    if (!input.isValid) {
       alert('you entered something wrong');
       return;
     }
 
-    alert('you entered ' + inputVal);
+    alert('you entered ' + input.value);
   };
 
   return (
@@ -25,9 +30,10 @@ function App(props) {
       <TextInput
         placeholder="Enter Phone"
         style={styles.input}
-        onChangeText={changeInput}
+        onChangeText={updateInput}
       />
       <Button title="SUBMIT" onPress={submitHandler} />
+      <Text>Your input is valid? {input.isValid.toString()}</Text>
     </View>
   );
 }
