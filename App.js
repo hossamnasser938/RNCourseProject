@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {Input} from './src/components/Input';
 
 function validatePhone(enteredPhone) {
   if (enteredPhone.length !== 11) {
@@ -10,10 +11,18 @@ function validatePhone(enteredPhone) {
 }
 
 function App(props) {
-  const [input, changeInput] = React.useState({value: '', isValid: false});
+  const [input, changeInput] = React.useState({
+    value: '',
+    isValid: false,
+    touched: false,
+  });
 
   const updateInput = inputVal => {
-    changeInput({value: inputVal, isValid: validatePhone(inputVal)});
+    changeInput({
+      value: inputVal,
+      isValid: validatePhone(inputVal),
+      touched: true,
+    });
   };
 
   const submitHandler = () => {
@@ -27,10 +36,13 @@ function App(props) {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      <Input
         placeholder="Enter Phone"
-        style={styles.input}
+        bordered
         onChangeText={updateInput}
+        showValidationFeedback
+        isValid={input.isValid}
+        touched={input.touched}
       />
       <Button title="SUBMIT" onPress={submitHandler} />
       <Text>Your input is valid? {input.isValid.toString()}</Text>
