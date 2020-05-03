@@ -1,9 +1,22 @@
 import React from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 
+function validatePhone(enteredPhone) {
+  if (enteredPhone.length !== 11) {
+    return false;
+  }
+
+  return Array.from(enteredPhone).every(char => char >= 0 && char <= 9);
+}
+
 function App(props) {
   const [inputVal, changeInput] = React.useState('');
   const submitHandler = () => {
+    if (!validatePhone(inputVal)) {
+      alert('you entered something wrong');
+      return;
+    }
+
     alert('you entered ' + inputVal);
   };
 
