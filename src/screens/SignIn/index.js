@@ -24,7 +24,8 @@ export function SignInScreen(props) {
       axios
         .post('/verify', {phone: input.value})
         .then(res => {
-          navigation.navigate('ConfirmationCodeScreen');
+          console.log(res.data);
+          navigation.navigate('ConfirmationCodeScreen', {phone: input.value});
         })
         .catch(err => {
           console.log('error', err);
