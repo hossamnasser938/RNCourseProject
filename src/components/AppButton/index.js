@@ -5,13 +5,24 @@ import styles from './styles';
 
 export class AppButton extends React.Component {
   render() {
-    const {title, wrapperStyle, titleStyle, isLoading, ...rest} = this.props;
+    const {
+      title,
+      wrapperStyle,
+      titleStyle,
+      isLoading,
+      disabled,
+      ...rest
+    } = this.props;
 
     return (
       <PlatformTouchable
         {...rest}
-        disabled={isLoading}
-        style={[styles.wrapper, wrapperStyle]}>
+        disabled={disabled || isLoading}
+        style={[
+          styles.wrapper,
+          wrapperStyle,
+          disabled ? styles.disabled : null,
+        ]}>
         {isLoading ? (
           <ActivityIndicator />
         ) : (

@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     color: textColor,
     fontWeight: 'bold',
   },
+  disabled: {
+    opacity: 0.3,
+  },
 });
 
 export default styles;

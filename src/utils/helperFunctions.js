@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const formatTimer = totalSeconds => {
   const seconds = totalSeconds % 60;
   const minutes = (totalSeconds - seconds) / 60;
@@ -19,4 +21,8 @@ export const getActualPrice = (price, discount) => {
   }
 
   return price;
+};
+
+export const configureAxios = () => {
+  axios.defaults.baseURL = 'http://www.rncourseproject.com/app';
 };
