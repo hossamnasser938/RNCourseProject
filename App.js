@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet, ActivityIndicator} from 'react-native';
+import axios from 'axios';
 
 function App(props) {
   const [repos, setRepos] = React.useState([]);
@@ -7,18 +8,10 @@ function App(props) {
 
   const getRposHandler = () => {
     setIsLoading(true);
-    fetch('https://api.github.com/users/hossamnasser938/repos')
-      .then(response => {
-        console.log('first response');
-        if (response.ok) {
-          return response.json();
-        }
-
-        throw new Error('error');
-      })
+    axios
+      .get('https://api.github.com/users/hossamnasser938/repos')
       .then(jsonResponse => {
-        console.log('json response');
-        setRepos(jsonResponse);
+        setRepos(jsonResponse.data);
       })
       .catch(error => {
         console.log('error', error);
