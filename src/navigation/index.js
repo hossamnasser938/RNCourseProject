@@ -4,7 +4,7 @@ import {AuthStack} from './AuthStack';
 import {HomeTabs} from './HomeTabs';
 
 export function AppContainer(props) {
-  const {isAuthenticated} = props;
+  const {isAuthenticated, setToken} = props;
 
   return (
     <NavigationContainer>

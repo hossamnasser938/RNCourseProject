@@ -5,6 +5,8 @@ import {Input} from '../../components/Input';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppButton} from '../../components/AppButton';
 import {useInput} from '../../utils/useInput';
+import AsyncStorage from '@react-native-community/async-storage';
+import {TOKEN_KEY} from '../../utils/constants';
 import styles from './styles';
 
 export function ConfirmationCodeScreen(props) {
@@ -19,6 +21,9 @@ export function ConfirmationCodeScreen(props) {
         .post('/verify/validate', {phone, code: input.value})
         .then(res => {
           console.log(res.data);
+          const {token} = res.data;
+          axios.defaults.headers.Authorization = 'Bearer ' + token;
+          AsyncStorage.setItem(TOKEN_KEY, token);
         })
         .catch(err => {
           console.log('error', error);
