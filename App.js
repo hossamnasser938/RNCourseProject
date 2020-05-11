@@ -24,7 +24,7 @@ function App(props) {
     });
   }, []);
 
-  return token !== 'NOT_YET' && <AppContainer isAuthenticated={!!token} />;
+  return token !== '' && <AppContainer isAuthenticated={!!token} />;
 }
 
 export default App;
