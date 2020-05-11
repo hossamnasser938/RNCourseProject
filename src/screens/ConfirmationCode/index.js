@@ -7,6 +7,7 @@ import {useInput} from '../../utils/useInput';
 import AsyncStorage from '@react-native-community/async-storage';
 import {TOKEN_KEY, USER_KEY} from '../../utils/constants';
 import {useDispatch} from 'react-redux';
+import {setToken, setUser} from '../../redux/actions';
 import styles from './styles';
 
 export function ConfirmationCodeScreen(props) {
@@ -15,8 +16,6 @@ export function ConfirmationCodeScreen(props) {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const dispatch = useDispatch();
-  const setToken = token => dispatch({type: 'SET_TOKEN', payload: {token}});
-  const setUser = user => dispatch({type: 'SET_USER', payload: {user}});
 
   const doneHandler = () => {
     if (input.isValid) {
@@ -27,8 +26,8 @@ export function ConfirmationCodeScreen(props) {
           console.log(res.data);
           const {token, userData} = res.data;
           axios.defaults.headers.Authorization = 'Bearer ' + token;
-          setToken(token);
-          setUser(userData);
+          dispatch(setToken(token));
+          dispatch(setUser(userData));
           AsyncStorage.setItem(TOKEN_KEY, token);
           AsyncStorage.setItem(USER_KEY, JSON.stringify(userData));
         })
