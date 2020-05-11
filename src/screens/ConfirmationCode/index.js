@@ -2,20 +2,21 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import axios from 'axios';
 import {Input} from '../../components/Input';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppButton} from '../../components/AppButton';
 import {useInput} from '../../utils/useInput';
 import AsyncStorage from '@react-native-community/async-storage';
 import {TOKEN_KEY, USER_KEY} from '../../utils/constants';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import styles from './styles';
 
-function ConfirmationCodeScreen(props) {
+export function ConfirmationCodeScreen(props) {
   const {phone} = props.route.params;
   const [input, changeInput] = useInput('', [{key: 'isConfirmationCode'}]);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const {setToken, setUser} = props;
+  const dispatch = useDispatch();
+  const setToken = token => dispatch({type: 'SET_TOKEN', payload: {token}});
+  const setUser = user => dispatch({type: 'SET_USER', payload: {user}});
 
   const doneHandler = () => {
     if (input.isValid) {
@@ -67,13 +68,3 @@ function ConfirmationCodeScreen(props) {
     </View>
   );
 }
-
-const mapDispatchToProps = dispatch => ({
-  setToken: token => dispatch({type: 'SET_TOKEN', payload: {token}}),
-  setUser: user => dispatch({type: 'SET_USER', payload: {user}}),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(ConfirmationCodeScreen);

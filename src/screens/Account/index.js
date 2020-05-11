@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import {PlatformTouchable} from '../../components/PlatformTouchable';
 import {IonIcon} from '../../components/IonIcon';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import styles from './styles';
 
 function renderInfoSection(user) {
@@ -48,8 +48,9 @@ function renderButtonsSection(navigation) {
   );
 }
 
-function AccountScreen(props) {
-  const {navigation, user} = props;
+export function AccountScreen(props) {
+  const {navigation} = props;
+  const user = useSelector(state => state.auth.user);
 
   return (
     <SafeAreaView style={styles.outerContainer}>
@@ -60,7 +61,3 @@ function AccountScreen(props) {
     </SafeAreaView>
   );
 }
-
-const mapStateToProps = state => ({user: state.auth.user});
-
-export default connect(mapStateToProps)(AccountScreen);
