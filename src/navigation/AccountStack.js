@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {AccountScreen} from '../screens/Account';
+import AccountScreen from '../screens/Account';
 import {AddAddressScreen} from '../screens/AddAddress';
 import {UpdateAccountScreen} from '../screens/UpdateAccount';
 import {OrdersScreen} from '../screens/Orders';

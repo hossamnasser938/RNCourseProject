@@ -1,30 +1,34 @@
 import React from 'react';
 import {AppContainer} from './src/navigation';
 import AsyncStorage from '@react-native-community/async-storage';
-import {TOKEN_KEY} from './src/utils/constants';
-import authStore from './src/TryFlux/AuthStore';
-import dispatcher from './src/TryFlux/dispatcher';
+import {TOKEN_KEY, USER_KEY} from './src/utils/constants';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 function App(props) {
-  const [token, setToken] = React.useState(authStore.token);
-
-  const handleTokenChange = () => {
-    setToken(authStore.token);
-  };
-
-  React.useEffect(() => {
-    authStore.on('change', handleTokenChange);
-  }, []);
+  const {token, setToken, setUser} = props;
 
   React.useEffect(() => {
     AsyncStorage.getItem(TOKEN_KEY).then(val => {
-      dispatcher.dispatch({type: 'SET_TOKEN', payload: {token: val}});
+      setToken(val);
       axios.defaults.headers.Authorization = 'Bearer ' + val;
+      AsyncStorage.getItem(USER_KEY).then(user => {
+        setUser(JSON.parse(user));
+      });
     });
   }, []);
 
   return token !== '' && <AppContainer isAuthenticated={!!token} />;
 }
 
-export default App;
+const mapStateToProps = state => ({token: state.auth.token});
+
+const mapDispatchToProps = dispatch => ({
+  setToken: token => dispatch({type: 'SET_TOKEN', payload: {token}}),
+  setUser: user => dispatch({type: 'SET_USER', payload: {user}}),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
