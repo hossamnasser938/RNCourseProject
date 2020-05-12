@@ -26,3 +26,7 @@ export const getActualPrice = (price, discount) => {
 export const configureAxios = () => {
   axios.defaults.baseURL = 'http://www.rncourseproject.com/app';
 };
+
+export const showError = errorMessage => {
+  alert(errorMessage);
+};

@@ -1,10 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import axios from 'axios';
 import {Input} from '../../components/Input';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppButton} from '../../components/AppButton';
 import {useInput} from '../../utils/useInput';
+import {useDispatch, useSelector} from 'react-redux';
+import {signIn} from '../../redux/actions';
+import {useUpdateEffect} from '../../utils/useUpdateEffect';
+import {showError} from '../../utils/helperFunctions';
 import styles from './styles';
 
 function renderPhoneIcon() {
@@ -13,26 +16,22 @@ function renderPhoneIcon() {
 
 export function SignInScreen(props) {
   const {navigation} = props;
-  const [isLoading, setIsLoading] = React.useState(false);
-
+  const isLoading = useSelector(state => state.auth.isSigningIn);
+  const success = useSelector(state => state.auth.signInSuccess);
+  const error = useSelector(state => state.auth.signInError);
+  const dispatch = useDispatch();
   const [input, changeInput] = useInput('', [{key: 'isPhone'}]);
+  useUpdateEffect(() => {
+    navigation.navigate('ConfirmationCodeScreen', {phone: input.value});
+  }, [success]);
+
+  useUpdateEffect(() => {
+    showError('Signin Failed');
+  }, [error]);
 
   const doneHandler = () => {
     if (input.isValid) {
-      // api request
-      setIsLoading(true);
-      axios
-        .post('/verify', {phone: input.value})
-        .then(res => {
-          console.log(res.data);
-          navigation.navigate('ConfirmationCodeScreen', {phone: input.value});
-        })
-        .catch(err => {
-          console.log('error', err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      dispatch(signIn(input.value));
     }
   };
 
