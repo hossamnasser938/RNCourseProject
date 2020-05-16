@@ -21,7 +21,10 @@ const signInStart = () => ({type: ActionTypes.SIGNIN_START});
 
 const signInSuccess = () => ({type: ActionTypes.SIGNIN_SUCCESS});
 
-const signInFaliure = () => ({type: ActionTypes.SIGNIN_FAILURE});
+const signInFaliure = errorCode => ({
+  type: ActionTypes.SIGNIN_FAILURE,
+  payload: {errorCode},
+});
 
 const confirmCodeStart = () => ({type: ActionTypes.CONFIRM_CODE_START});
 
@@ -42,8 +45,7 @@ export const signIn = phone => {
         console.log(res.data);
       })
       .catch(err => {
-        dispatch(signInFaliure);
-        console.log('error', err);
+        dispatch(signInFaliure(UNEXPECTED_ERROR_CODE));
       });
   };
 };

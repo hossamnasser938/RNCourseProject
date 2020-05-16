@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
+import {errorCodeMessageMapper} from '../../utils/errorCodes';
 import styles from './styles';
 
 function renderPhoneIcon() {
@@ -18,7 +19,7 @@ export function SignInScreen(props) {
   const {navigation} = props;
   const isLoading = useSelector(state => state.auth.isSigningIn);
   const success = useSelector(state => state.auth.signInSuccess);
-  const error = useSelector(state => state.auth.signInError);
+  const failure = useSelector(state => state.auth.signInFailure);
   const dispatch = useDispatch();
   const [input, changeInput] = useInput('', [{key: 'isPhone'}]);
   useUpdateEffect(() => {
@@ -26,8 +27,8 @@ export function SignInScreen(props) {
   }, [success]);
 
   useUpdateEffect(() => {
-    showError('Signin Failed');
-  }, [error]);
+    showError(errorCodeMessageMapper[failure.errorCode]);
+  }, [failure]);
 
   const doneHandler = () => {
     if (input.isValid) {
@@ -50,6 +51,7 @@ export function SignInScreen(props) {
         onChangeText={changeInput}
         keyboardType="numeric"
         onSubmitEditing={doneHandler}
+        editable={!isLoading}
       />
       <View style={styles.buttonWrapper}>
         <AppButton

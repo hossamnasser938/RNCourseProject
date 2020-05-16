@@ -40,7 +40,7 @@ function authReducer(state = initialState, action) {
       return {
         ...state,
         isSigningIn: false,
-        signInFailure: {},
+        signInFailure: {errorCode: action.payload.errorCode},
       };
 
     case ActionTypes.CONFIRM_CODE_START:
