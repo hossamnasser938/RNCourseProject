@@ -35,6 +35,8 @@ const confirmCodeFaliure = errorCode => ({
   payload: {errorCode},
 });
 
+export const clearReduxData = () => ({type: ActionTypes.CLEAR_REDUX_DATA});
+
 export const signIn = phone => {
   return (dispatch, getState) => {
     dispatch(signInStart());
@@ -71,5 +73,13 @@ export const confirmCode = (phone, code) => {
           : UNEXPECTED_ERROR_CODE;
         dispatch(confirmCodeFaliure(errorCode));
       });
+  };
+};
+
+export const logout = () => {
+  return (dispatch, getState) => {
+    axios.defaults.headers.Authorization = undefined;
+    AsyncStorage.clear();
+    dispatch(clearReduxData());
   };
 };

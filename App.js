@@ -19,7 +19,7 @@ function App(props) {
         dispatch(setUser(JSON.parse(user)));
       });
     });
-  }, []);
+  }, [token]);
 
   return token !== '' && <AppContainer isAuthenticated={!!token} />;
 }
