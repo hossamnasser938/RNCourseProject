@@ -83,3 +83,11 @@ export const logout = () => {
     dispatch(clearReduxData());
   };
 };
+
+export const getUserData = () => {
+  return (dispatch, getState) => {
+    axios.get('/user/get-data').then(res => {
+      dispatch(setUser(res.data.userData));
+    });
+  };
+};

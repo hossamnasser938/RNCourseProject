@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {TOKEN_KEY, USER_KEY} from './src/utils/constants';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-import {setToken, setUser} from './src/redux/actions';
+import {setToken, setUser, getUserData} from './src/redux/actions';
 
 function App(props) {
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ function App(props) {
       axios.defaults.headers.Authorization = 'Bearer ' + val;
       AsyncStorage.getItem(USER_KEY).then(user => {
         dispatch(setUser(JSON.parse(user)));
+        dispatch(getUserData());
       });
     });
   }, [token]);
