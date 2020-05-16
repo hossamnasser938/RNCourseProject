@@ -9,6 +9,9 @@ import {name as appName} from './app.json';
 import {configureAxios} from './src/utils/helperFunctions';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
+import Reactotron from './ReactotronConfig';
+
+global.r = Reactotron;
 
 const ConnectedApp = () => (
   <Provider store={store}>

@@ -52,15 +52,15 @@ function authReducer(state = initialState, action) {
     case ActionTypes.CONFIRM_CODE_SUCCESS:
       return {
         ...state,
-        isSigningIn: false,
+        isConfirmingCode: false,
         confirmCodeSuccess: {},
       };
 
     case ActionTypes.CONFIRM_CODE_FAILURE:
       return {
         ...state,
-        isSigningIn: false,
-        confirmCodeFailure: {},
+        isConfirmingCode: false,
+        confirmCodeFailure: {errorCode: action.payload.errorCode},
       };
 
     default:

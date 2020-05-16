@@ -7,17 +7,18 @@ import {useDispatch, useSelector} from 'react-redux';
 import {confirmCode} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
+import {errorCodeMessageMapper} from '../../utils/errorCodes';
 import styles from './styles';
 
 export function ConfirmationCodeScreen(props) {
   const {phone} = props.route.params;
   const [input, changeInput] = useInput('', [{key: 'isConfirmationCode'}]);
   const isLoading = useSelector(state => state.auth.isConfirmingCode);
-  const failure = useSelector(state => state.auth.confirmCodeFilure);
+  const failure = useSelector(state => state.auth.confirmCodeFailure);
   const dispatch = useDispatch();
 
   useUpdateEffect(() => {
-    showError('Confirming failure');
+    showError(errorCodeMessageMapper[failure.errorCode]);
   }, [failure]);
 
   const doneHandler = () => {
