@@ -1,4 +1,7 @@
 import axios from 'axios';
+import {config} from 'api-request-biolerplate-actions';
+import store from '../redux/store';
+import {BASE_URL} from './constants';
 
 export const formatTimer = totalSeconds => {
   const seconds = totalSeconds % 60;
@@ -24,7 +27,11 @@ export const getActualPrice = (price, discount) => {
 };
 
 export const configureAxios = () => {
-  axios.defaults.baseURL = 'http://www.rncourseproject.com/app';
+  axios.defaults.baseURL = BASE_URL;
+};
+
+export const configureApiRequestBoilerplateActions = () => {
+  config(store.dispatch, BASE_URL);
 };
 
 export const showError = errorMessage => {
