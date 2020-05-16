@@ -6,13 +6,19 @@ import {useSelector, useDispatch} from 'react-redux';
 import {logout} from '../../redux/actions';
 import styles from './styles';
 
-function renderInfoSection(user) {
+function renderInfoSection(user, navigation) {
   return (
     <View style={styles.infoSection}>
       <IonIcon name="person" style={styles.personIcon} />
       <View style={styles.verticalLine} />
       <View>
-        <Text style={styles.infoText}>{user.name || 'HIT to enter name'}</Text>
+        <Text
+          onPress={() => {
+            !user.name && navigation.navigate('UpdateAccountScreen');
+          }}
+          style={[styles.infoText, !user.name && styles.hitToEnterNameButton]}>
+          {user.name || 'HIT to enter name'}
+        </Text>
         <Text style={styles.infoText}>{user.phone}</Text>
       </View>
     </View>
@@ -59,7 +65,7 @@ export function AccountScreen(props) {
   return (
     <SafeAreaView style={styles.outerContainer}>
       <View style={styles.container}>
-        {renderInfoSection(user)}
+        {renderInfoSection(user, navigation)}
         {renderButtonsSection(navigation, onDispatchLogout)}
       </View>
     </SafeAreaView>

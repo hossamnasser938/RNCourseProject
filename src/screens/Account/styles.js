@@ -1,4 +1,5 @@
 import {ScaledSheet} from 'react-native-size-matters';
+import {TINT_COLOR} from '../../utils/colors';
 
 const styles = ScaledSheet.create({
   outerContainer: {
@@ -39,6 +40,10 @@ const styles = ScaledSheet.create({
   },
   button: {
     marginVertical: '10@s',
+  },
+  hitToEnterNameButton: {
+    color: TINT_COLOR,
+    textDecorationLine: 'underline',
   },
 });
 

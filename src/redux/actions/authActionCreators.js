@@ -91,3 +91,11 @@ export const getUserData = () => {
     });
   };
 };
+
+export const updateUserName = name => {
+  return (dispatch, getState) => {
+    axios.put('/user/change-name', {name}).then(res => {
+      dispatch(getUserData());
+    });
+  };
+};
