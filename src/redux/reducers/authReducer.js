@@ -87,6 +87,10 @@ export default highOrderReducer(
       requestEndPoint: 'user/change-name',
       baseActionType: 'changeName',
     },
+    {
+      requestEndPoint: 'address',
+      baseActionType: 'addAddress',
+    },
   ],
   authReducer,
 );

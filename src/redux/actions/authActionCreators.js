@@ -99,3 +99,13 @@ export const updateUserName = name => {
     });
   };
 };
+
+export const addAddress = ({name, phone, city, area, street, building}) => {
+  return (dispatch, getState) => {
+    axios
+      .post('/address', {name, phone, city, area, street, building})
+      .then(res => {
+        dispatch(getUserData());
+      });
+  };
+};
