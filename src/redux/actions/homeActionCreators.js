@@ -25,3 +25,41 @@ export const fetchChildrenCategroies = categoryId => {
     axios.get('/category/get-children/' + categoryId);
   };
 };
+
+export const appendProducts = (categoryId, products) => ({
+  type: ActionTypes.APPEND_PRODUCTS,
+  payload: {categoryId, products},
+});
+
+export const setCategoryProductsPage = (categoryId, nextPage) => ({
+  type: ActionTypes.SET_CATEGORY_PRODUCTS_PAGE,
+  payload: {categoryId, nextPage},
+});
+
+export const fetchCategoryProducts = category => {
+  return (dispatch, getState) => {
+    const endPoint = category.parentId
+      ? '/product/category/'
+      : '/product/parent-category/';
+
+    const calculatedPage = getState().home.categoryProductsNextPages[
+      category._id
+    ];
+
+    const nextRequestPage = calculatedPage === undefined ? 1 : calculatedPage;
+
+    if (nextRequestPage) {
+      axios
+        .get(endPoint, {params: {id: category._id, page: nextRequestPage}})
+        .then(res => {
+          dispatch(appendProducts(category._id, res.data.data));
+
+          const {lastPage, nextPage} = res.data;
+          const page = nextPage > lastPage ? null : nextPage;
+          r.log('page', page);
+          dispatch(setCategoryProductsPage(category._id, page));
+        })
+        .catch(err => {});
+    }
+  };
+};
