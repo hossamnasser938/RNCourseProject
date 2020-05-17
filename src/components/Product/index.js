@@ -4,6 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import {PlatformTouchable} from '../PlatformTouchable';
 import {Card} from '../Card';
 import {Price} from '../Price';
+import {IMAGES_URL} from '../../utils/constants';
+import {cutLongName} from '../../utils/helperFunctions';
 import styles from './styles';
 
 export function Product(props) {
@@ -15,10 +17,13 @@ export function Product(props) {
       style={styles.container}
       onPress={() => navigation.navigate('ProductScreen', {productId: 1})}>
       <Card>
-        <Image source={{uri: product.imageUrl}} style={styles.image} />
+        <Image
+          source={{uri: IMAGES_URL + 'products/resized/' + product.images[0]}}
+          style={styles.image}
+        />
       </Card>
       <Price price={product.price} discount={product.discount} />
-      <Text style={styles.title}>{product.title}</Text>
+      <Text style={styles.title}>{cutLongName(product.title, 18)}</Text>
     </PlatformTouchable>
   );
 }

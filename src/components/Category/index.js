@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import {Image, Text} from 'react-native';
 import {PlatformTouchable} from '../PlatformTouchable';
 import {Card} from '../Card';
 import {useNavigation} from '@react-navigation/native';
+import {IMAGES_URL} from '../../utils/constants';
+import {cutLongName} from '../../utils/helperFunctions';
 import styles from './styles';
 
 export function Category(props) {
@@ -14,9 +16,12 @@ export function Category(props) {
       style={styles.container}
       onPress={() => navigation.navigate('CategoryScreen')}>
       <Card>
-        <Image source={{uri: category.imageUrl}} style={styles.image} />
+        <Image
+          source={{uri: IMAGES_URL + 'cat-thumbs/resized/' + category.image}}
+          style={styles.image}
+        />
       </Card>
-      <Text style={styles.title}>{category.title}</Text>
+      <Text style={styles.title}>{cutLongName(category.name)}</Text>
     </PlatformTouchable>
   );
 }

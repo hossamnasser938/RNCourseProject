@@ -38,3 +38,11 @@ export const configureApiRequestBoilerplateActions = () => {
 export const showError = errorCode => {
   alert(errorCodeMessageMapper[errorCode]);
 };
+
+export const cutLongName = (name, maxChars = 12) => {
+  if (name.length > maxChars) {
+    return name.slice(0, maxChars - 3) + '...';
+  }
+
+  return name;
+};

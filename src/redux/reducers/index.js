@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
 import authReducer from './authReducer';
+import homeReducer from './homeReducer';
 import {CLEAR_REDUX_DATA} from '../actions/ActionTypes';
 
-const rootReducer = combineReducers({auth: authReducer});
+const rootReducer = combineReducers({auth: authReducer, home: homeReducer});
 
 const appReducer = (state, action) => {
   if (action.type === CLEAR_REDUX_DATA) {
