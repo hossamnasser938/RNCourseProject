@@ -9,18 +9,30 @@ import {ChildrenCategory} from '../../components/ChildrenCategory';
 import {ProductsList} from '../../components/ProductsList';
 import styles from './styles';
 
-function renderChildrenCategory({item}) {
-  return <ChildrenCategory category={item} />;
+function renderChildrenCategory(item, selectedCategory, setSelectedCategory) {
+  return (
+    <ChildrenCategory
+      category={item}
+      selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+    />
+  );
 }
 
 const keyExtractor = item => item._id;
 
-function renderChildrenCategories(childrenCategories) {
+function renderChildrenCategories(
+  childrenCategories,
+  selectedCategory,
+  setSelectedCategory,
+) {
   return (
     <FlatList
       horizontal={true}
       data={childrenCategories}
-      renderItem={renderChildrenCategory}
+      renderItem={({item}) =>
+        renderChildrenCategory(item, selectedCategory, setSelectedCategory)
+      }
       keyExtractor={keyExtractor}
     />
   );
@@ -28,24 +40,32 @@ function renderChildrenCategories(childrenCategories) {
 
 export function CategoryScreen(props) {
   const {category} = props.route.params;
+  const [selectedCategory, setSelectedCategory] = React.useState(category);
   const dispatch = useDispatch();
 
   const childrenCategories = useSelector(
     state => state.home.childrenCategories[category._id] || [],
   );
 
-  const products = useSelector(
-    state => state.home.categoryProducts[category._id],
-  );
+  const products =
+    useSelector(state => state.home.categoryProducts[selectedCategory._id]) ||
+    [];
 
   React.useEffect(() => {
-    dispatch(fetchChildrenCategroies(category._id));
-    dispatch(fetchCategoryProducts(category));
+    products.length === 0 && dispatch(fetchChildrenCategroies(category._id));
   }, []);
+
+  React.useEffect(() => {
+    products.length === 0 && dispatch(fetchCategoryProducts(selectedCategory));
+  }, [selectedCategory]);
 
   return (
     <View style={styles.container}>
-      {renderChildrenCategories([category, ...childrenCategories])}
+      {renderChildrenCategories(
+        [category, ...childrenCategories],
+        selectedCategory,
+        setSelectedCategory,
+      )}
       <Text style={styles.headerText}>Products</Text>
       <ProductsList
         data={products}
