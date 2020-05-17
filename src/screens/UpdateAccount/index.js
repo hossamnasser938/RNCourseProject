@@ -11,11 +11,22 @@ import styles from './styles';
 
 export function UpdateAccountScreen(props) {
   const {navigation} = props;
-  const [input, setInput] = React.useState('');
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.auth.changeNameLoading);
   const success = useSelector(state => state.auth.updateNameSuccess);
   const error = useSelector(state => state.auth.changeNameError);
+  const user = useSelector(state => state.auth.user);
+  const [input, setInput] = React.useState({
+    value: user.name || '',
+    isValid: false,
+  });
+
+  const updateInput = value => {
+    setInput({
+      value,
+      isValid: value !== '' && value !== user.name,
+    });
+  };
 
   useUpdateEffect(() => {
     navigation.goBack();
@@ -32,7 +43,8 @@ export function UpdateAccountScreen(props) {
           placeholder="Name"
           stacked
           wrapperStyle={styles.input}
-          onChangeText={setInput}
+          onChangeText={updateInput}
+          value={input.value}
         />
       </View>
 
@@ -40,6 +52,7 @@ export function UpdateAccountScreen(props) {
         title="SAVE"
         onPress={() => dispatch(updateUserName(input))}
         isLoading={isLoading}
+        disabled={!input.isValid}
       />
     </View>
   );

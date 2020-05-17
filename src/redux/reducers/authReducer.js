@@ -11,6 +11,7 @@ const initialState = {
   confirmCodeSuccess: null,
   confirmCodeFailure: null,
   updateNameSuccess: null,
+  addAddressSuccess: null,
 };
 
 function authReducer(state = initialState, action) {
@@ -69,6 +70,12 @@ function authReducer(state = initialState, action) {
       return {
         ...state,
         updateNameSuccess: {},
+      };
+
+    case 'SUCCESS_' + 'addAddress':
+      return {
+        ...state,
+        addAddressSuccess: {},
       };
 
     default:
