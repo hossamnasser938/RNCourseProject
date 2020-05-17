@@ -1,10 +1,19 @@
 import React from 'react';
 import {AppContainer} from './src/navigation';
 import AsyncStorage from '@react-native-community/async-storage';
-import {TOKEN_KEY, USER_KEY} from './src/utils/constants';
+import {
+  TOKEN_KEY,
+  USER_KEY,
+  SELECTED_ADDRESS_ID_KEY,
+} from './src/utils/constants';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-import {setToken, setUser, getUserData} from './src/redux/actions';
+import {
+  setToken,
+  setUser,
+  getUserData,
+  selectAddress,
+} from './src/redux/actions';
 
 function App(props) {
   const dispatch = useDispatch();
@@ -21,6 +30,12 @@ function App(props) {
       });
     });
   }, [token]);
+
+  React.useEffect(() => {
+    AsyncStorage.getItem(SELECTED_ADDRESS_ID_KEY).then(addId => {
+      dispatch(selectAddress(addId));
+    });
+  }, []);
 
   return token !== '' && <AppContainer isAuthenticated={!!token} />;
 }

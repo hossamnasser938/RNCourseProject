@@ -1,6 +1,10 @@
 import * as ActionTypes from './ActionTypes';
 import axios from 'axios';
-import {USER_KEY, TOKEN_KEY} from '../../utils/constants';
+import {
+  USER_KEY,
+  TOKEN_KEY,
+  SELECTED_ADDRESS_ID_KEY,
+} from '../../utils/constants';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
   UNEXPECTED_ERROR_CODE,
@@ -107,5 +111,18 @@ export const addAddress = ({name, phone, city, area, street, building}) => {
       .then(res => {
         dispatch(getUserData());
       });
+  };
+};
+
+export const addressSelected = addressId => ({
+  type: ActionTypes.ADDRESS_SELECTED,
+  payload: {addressId},
+});
+
+export const selectAddress = addressId => {
+  return (dispatch, getState) => {
+    AsyncStorage.setItem(SELECTED_ADDRESS_ID_KEY, addressId);
+
+    dispatch(addressSelected(addressId));
   };
 };

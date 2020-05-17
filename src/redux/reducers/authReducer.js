@@ -4,6 +4,7 @@ import {highOrderReducer} from 'api-request-biolerplate-actions';
 const initialState = {
   token: '',
   user: null,
+  selectedAddressId: null,
   isSigningIn: false,
   signInSuccess: null,
   signInFailure: null,
@@ -76,6 +77,12 @@ function authReducer(state = initialState, action) {
       return {
         ...state,
         addAddressSuccess: {},
+      };
+
+    case ActionTypes.ADDRESS_SELECTED:
+      return {
+        ...state,
+        selectedAddressId: action.payload.addressId,
       };
 
     default:
