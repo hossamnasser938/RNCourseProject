@@ -5,6 +5,7 @@ const initialState = {
   token: '',
   user: null,
   selectedAddressId: null,
+  orders: [],
   isSigningIn: false,
   signInSuccess: null,
   signInFailure: null,
@@ -85,6 +86,12 @@ function authReducer(state = initialState, action) {
         selectedAddressId: action.payload.addressId,
       };
 
+    case 'SUCCESS_' + 'getOrders':
+      return {
+        ...state,
+        orders: action.payload.data.orders,
+      };
+
     default:
       return state;
   }
@@ -104,6 +111,10 @@ export default highOrderReducer(
     {
       requestEndPoint: 'address',
       baseActionType: 'addAddress',
+    },
+    {
+      requestEndPoint: 'order',
+      baseActionType: 'getOrders',
     },
   ],
   authReducer,

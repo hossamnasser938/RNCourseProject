@@ -1,7 +1,10 @@
 import React from 'react';
 import {View, FlatList} from 'react-native';
 import {Order} from '../../components/Order';
-import {dummyOrders} from '../../utils/dummyData';
+import {getOrders} from '../../redux/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {useUpdateEffect} from '../../utils/useUpdateEffect';
+import {showError} from '../../utils/helperFunctions';
 import styles from './styles';
 
 function renderOrder({item}) {
@@ -13,5 +16,17 @@ function renderOrders(orders) {
 }
 
 export function OrdersScreen(props) {
-  return <View style={styles.container}>{renderOrders(dummyOrders)}</View>;
+  const dispatch = useDispatch();
+  const error = useSelector(state => state.auth.getOrdersError);
+  const orders = useSelector(state => state.auth.orders);
+
+  React.useEffect(() => {
+    dispatch(getOrders());
+  }, []);
+
+  useUpdateEffect(() => {
+    showError(error.errorCode);
+  }, [error]);
+
+  return <View style={styles.container}>{renderOrders(orders)}</View>;
 }

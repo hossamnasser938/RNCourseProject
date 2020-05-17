@@ -126,3 +126,9 @@ export const selectAddress = addressId => {
     dispatch(addressSelected(addressId));
   };
 };
+
+export const getOrders = () => {
+  return (dispatch, getState) => {
+    axios.get('/order');
+  };
+};
