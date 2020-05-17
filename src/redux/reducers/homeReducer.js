@@ -31,6 +31,7 @@ function homeReducer(state = initialState, action) {
       return {
         ...state,
         childrenCategories: {
+          ...state.childrenCategories,
           [action.payload.data.children[0].parentId]:
             action.payload.data.children,
         },
