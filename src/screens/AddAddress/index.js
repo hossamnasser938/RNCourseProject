@@ -6,7 +6,6 @@ import {addAddress} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
-import {errorCodeMessageMapper} from '../../utils/errorCodes';
 import styles from './styles';
 
 export function AddAddressScreen(props) {
@@ -18,7 +17,7 @@ export function AddAddressScreen(props) {
   const success = useSelector(state => state.auth.addAddressSuccess);
 
   useUpdateEffect(() => {
-    showError(errorCodeMessageMapper[error.errorCode]);
+    showError(error.errorCode);
   }, [error]);
 
   useUpdateEffect(() => {

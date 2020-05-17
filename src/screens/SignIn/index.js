@@ -8,7 +8,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
-import {errorCodeMessageMapper} from '../../utils/errorCodes';
 import styles from './styles';
 
 function renderPhoneIcon() {
@@ -27,7 +26,7 @@ export function SignInScreen(props) {
   }, [success]);
 
   useUpdateEffect(() => {
-    showError(errorCodeMessageMapper[failure.errorCode]);
+    showError(failure.errorCode);
   }, [failure]);
 
   const doneHandler = () => {

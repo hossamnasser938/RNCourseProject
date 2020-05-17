@@ -2,6 +2,7 @@ import axios from 'axios';
 import {config} from 'api-request-biolerplate-actions';
 import store from '../redux/store';
 import {BASE_URL} from './constants';
+import {errorCodeMessageMapper} from './errorCodes';
 
 export const formatTimer = totalSeconds => {
   const seconds = totalSeconds % 60;
@@ -34,6 +35,6 @@ export const configureApiRequestBoilerplateActions = () => {
   config(store.dispatch, BASE_URL);
 };
 
-export const showError = errorMessage => {
-  alert(errorMessage);
+export const showError = errorCode => {
+  alert(errorCodeMessageMapper[errorCode]);
 };
