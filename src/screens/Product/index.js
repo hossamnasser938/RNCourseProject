@@ -1,37 +1,55 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
-import {dummyProduct1} from '../../utils/dummyData';
+import {View, Text, Image, SafeAreaView} from 'react-native';
 import {IonIcon} from '../../components/IonIcon';
 import {Price} from '../../components/Price';
 import {AddToCartButton} from '../../components/AddToCartButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchProduct} from '../../redux/actions';
+import {IMAGES_URL} from '../../utils/constants';
 import styles from './styles';
-
-function getProduct(productId) {
-  return dummyProduct1;
-}
 
 export function ProductScreen(props) {
   const {productId} = props.route.params;
+  const [product, setProduct] = React.useState();
+  const dispatch = useDispatch();
 
-  const product = getProduct(productId);
+  const reduxProduct = useSelector(state => state.home.product);
 
-  return (
-    <View style={styles.container}>
-      <Image source={{uri: product.imageUrl}} style={styles.image} />
-      <View style={styles.productTitleWrapper}>
-        <IonIcon name={'arrow-back'} style={styles.icon} />
-        <View style={styles.titleWrapper}>
-          <Text style={styles.title}>{product.title}</Text>
+  React.useEffect(() => {
+    if (reduxProduct && reduxProduct._id === productId) {
+      setProduct(reduxProduct);
+    }
+  }, [reduxProduct]);
+
+  React.useEffect(() => {
+    dispatch(fetchProduct(productId));
+  }, []);
+
+  return product ? (
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Image
+          source={{uri: IMAGES_URL + 'products/' + product.images[0]}}
+          style={styles.image}
+        />
+        <View style={styles.productTitleWrapper}>
+          <IonIcon name={'arrow-back'} style={styles.icon} />
+          <View style={styles.titleWrapper}>
+            <Text numberOfLines={1} style={styles.title}>
+              {product.title}
+            </Text>
+          </View>
         </View>
       </View>
+
       <View style={styles.wrapper}>
         <Price price={product.price} discount={product.discount} />
         <Text style={styles.descriptionText}>Description</Text>
-        <Text>{product.description}</Text>
+        <Text>{product.details}</Text>
         <View style={styles.buttonWrapper}>
           <AddToCartButton />
         </View>
       </View>
-    </View>
-  );
+    </SafeAreaView>
+  ) : null;
 }

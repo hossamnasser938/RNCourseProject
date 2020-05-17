@@ -63,3 +63,9 @@ export const fetchCategoryProducts = category => {
     }
   };
 };
+
+export const fetchProduct = productId => {
+  return (dispatch, getState) => {
+    axios.get('/product-by-id/' + productId);
+  };
+};

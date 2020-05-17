@@ -9,6 +9,7 @@ const initialState = {
   childrenCategories: {},
   categoryProducts: {},
   categoryProductsNextPages: {},
+  product: null,
 };
 
 function homeReducer(state = initialState, action) {
@@ -62,6 +63,12 @@ function homeReducer(state = initialState, action) {
         },
       };
 
+    case 'SUCCESS_' + 'fetchProduct':
+      return {
+        ...state,
+        product: action.payload.data.product,
+      };
+
     default:
       return state;
   }
@@ -81,6 +88,10 @@ export default highOrderReducer(
     {
       requestEndPoint: /^category\/get-children\/[a-zA_Z0-9]+/,
       baseActionType: 'fetchChildrenCategories',
+    },
+    {
+      requestEndPoint: /^product-by-id\/[a-zA_Z0-9]+/,
+      baseActionType: 'fetchProduct',
     },
   ],
   homeReducer,
