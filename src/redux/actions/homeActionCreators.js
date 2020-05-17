@@ -19,3 +19,9 @@ export const fetchHomeProducts = () => {
     axios.get('/product/best-seller');
   };
 };
+
+export const fetchChildrenCategroies = categoryId => {
+  return (dispatch, getState) => {
+    axios.get('/category/get-children/' + categoryId);
+  };
+};

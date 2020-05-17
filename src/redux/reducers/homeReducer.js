@@ -5,6 +5,7 @@ const initialState = {
     categories: [],
     products: [],
   },
+  childrenCategories: {},
 };
 
 function homeReducer(state = initialState, action) {
@@ -26,6 +27,15 @@ function homeReducer(state = initialState, action) {
         },
       };
 
+    case 'SUCCESS_' + 'fetchChildrenCategories':
+      return {
+        ...state,
+        childrenCategories: {
+          [action.payload.data.children[0].parentId]:
+            action.payload.data.children,
+        },
+      };
+
     default:
       return state;
   }
@@ -41,6 +51,10 @@ export default highOrderReducer(
     {
       requestEndPoint: 'product/best-seller',
       baseActionType: 'fetchHomeProducts',
+    },
+    {
+      requestEndPoint: /^category\/get-children\/[a-zA_Z0-9]+/,
+      baseActionType: 'fetchChildrenCategories',
     },
   ],
   homeReducer,
