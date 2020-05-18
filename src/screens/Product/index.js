@@ -6,10 +6,12 @@ import {AddToCartButton} from '../../components/AddToCartButton';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchProduct} from '../../redux/actions';
 import {IMAGES_URL} from '../../utils/constants';
+import {getActualPrice} from '../../utils/helperFunctions';
 import styles from './styles';
 
 export function ProductScreen(props) {
   const {productId} = props.route.params;
+  const {navigation} = props;
   const [product, setProduct] = React.useState();
   const dispatch = useDispatch();
 
@@ -33,7 +35,11 @@ export function ProductScreen(props) {
           style={styles.image}
         />
         <View style={styles.productTitleWrapper}>
-          <IonIcon name={'arrow-back'} style={styles.icon} />
+          <IonIcon
+            name={'arrow-back'}
+            style={styles.icon}
+            onPress={() => navigation.goBack()}
+          />
           <View style={styles.titleWrapper}>
             <Text numberOfLines={1} style={styles.title}>
               {product.title}
@@ -47,7 +53,11 @@ export function ProductScreen(props) {
         <Text style={styles.descriptionText}>Description</Text>
         <Text>{product.details}</Text>
         <View style={styles.buttonWrapper}>
-          <AddToCartButton />
+          <AddToCartButton
+            productId={productId}
+            cost={getActualPrice(product.price, product.discount)}
+            count={product.increaseCount}
+          />
         </View>
       </View>
     </SafeAreaView>

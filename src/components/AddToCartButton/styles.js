@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const incDecBtnColor = '#eee';
+const incDecBtnColor = '#bbb';
 
 const styles = StyleSheet.create({
   wrapper: {
