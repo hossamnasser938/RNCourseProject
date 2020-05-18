@@ -4,13 +4,13 @@ const styles = ScaledSheet.create({
   outerContainer: {
     flex: 1,
   },
-  container: {
-    flex: 1,
-    padding: '10@s',
-  },
   searchIcon: {
     fontSize: '24@s',
     color: '#bbb',
+  },
+  input: {
+    height: 40,
+    margin: '10@s',
   },
 });
 
