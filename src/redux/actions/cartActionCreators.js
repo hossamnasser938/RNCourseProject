@@ -23,6 +23,11 @@ const addProductToCartError = erorCode => ({
   payload: {erorCode},
 });
 
+export const updateCartItemImmediately = (cartItemId, action) => ({
+  type: ActionTypes.UPDATE_CART_ITEM_IMMEDIATELY,
+  payload: {cartItemId, action},
+});
+
 export const makeOrder = () => {
   return (dispatch, getState) => {
     const selectedAddressId = getState().auth.selectedAddressId;
@@ -52,5 +57,16 @@ export const addToCart = (productId, cost, count) => {
       .finally(() => {
         dispatch(clearAddingProductToCart(productId));
       });
+  };
+};
+
+export const updateCartItem = (cartItemId, action, count) => {
+  return (dispatch, getState) => {
+    dispatch(updateCartItemImmediately(cartItemId, action));
+
+    axios.put('cart', {id: cartItemId, action, count}).catch(err => {
+      dispatch(fetchCartItems());
+      dispatch(addProductToCartError());
+    });
   };
 };

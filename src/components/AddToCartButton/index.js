@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {AppButton} from '../AppButton';
 import {useSelector, useDispatch} from 'react-redux';
-import {addToCart} from '../../redux/actions';
+import {addToCart, updateCartItem} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
 import styles from './styles';
@@ -23,15 +23,18 @@ export function AddToCartButton(props) {
     showError(error.errorCode);
   }, [error]);
 
-  const [quantity, setQuantity] = React.useState(0);
-
   const incrementQuantityHandler = () => {
-    dispatch(addToCart(productId, cost, count));
-    setQuantity(quantity + 1);
+    if (cartItemCount === 0) {
+      dispatch(addToCart(productId, cost, count));
+    } else {
+      dispatch(updateCartItem(matchingCartItem._id, 'increase', count));
+    }
   };
 
   const decrementQuantityHandler = () => {
-    setQuantity(quantity - 1);
+    const action = cartItemCount === 1 ? 'delete' : 'decrease';
+
+    dispatch(updateCartItem(matchingCartItem._id, action, count));
   };
 
   const renderInitialButton = () => {

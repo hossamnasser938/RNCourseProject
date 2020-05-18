@@ -43,6 +43,33 @@ function cartReducer(state = initialState, action) {
         addProductToCartError: {errorCode: action.payload.errorCode},
       };
 
+    case ActionTypes.UPDATE_CART_ITEM_IMMEDIATELY:
+      if (action.payload.action === 'delete') {
+        return {
+          ...state,
+          cartItems: state.cartItems.filter(
+            item => item._id !== action.payload.cartItemId,
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: state.cartItems.map(item => {
+            if (item._id === action.payload.cartItemId) {
+              return {
+                ...item,
+                count:
+                  action.payload.action === 'increase'
+                    ? item.count + 1
+                    : item.count - 1,
+              };
+            }
+
+            return item;
+          }),
+        };
+      }
+
     default:
       return state;
   }
