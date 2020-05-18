@@ -10,11 +10,11 @@ export function Price(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.price}>
-        {CURRENCY} {getActualPrice(price, discount)}
+        {CURRENCY} {getActualPrice(price, discount).toFixed(2)}
       </Text>
       {discount ? (
         <Text style={styles.oldPrice}>
-          {CURRENCY} {price}
+          {CURRENCY} {price.toFixed(2)}
         </Text>
       ) : null}
     </View>

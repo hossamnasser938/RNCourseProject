@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Card} from '../Card';
 import {Price} from '../Price';
 import {AddToCartButton} from '../AddToCartButton';
+import {IMAGES_URL} from '../../utils/constants';
 import styles from './styles';
 
 export function CartItem(props) {
@@ -16,9 +17,16 @@ export function CartItem(props) {
       <PlatformTouchable
         style={styles.container}
         onPress={() => navigation.navigate('ProductScreen', {productId: 1})}>
-        <Image source={{uri: cartItem.product.imageUrl}} style={styles.image} />
+        <Image
+          source={{
+            uri: IMAGES_URL + 'products/resized/' + cartItem.product.images[0],
+          }}
+          style={styles.image}
+        />
         <View style={styles.wrapper}>
-          <Text style={styles.title}>{cartItem.product.title}</Text>
+          <Text numberOfLines={1} style={styles.title}>
+            {cartItem.product.title}
+          </Text>
           <Price
             price={cartItem.product.price}
             discount={cartItem.product.discount}

@@ -13,6 +13,7 @@ import {
   setUser,
   getUserData,
   selectAddress,
+  fetchCartItems,
 } from './src/redux/actions';
 
 function App(props) {
@@ -24,6 +25,7 @@ function App(props) {
     AsyncStorage.getItem(TOKEN_KEY).then(val => {
       dispatch(setToken(val));
       axios.defaults.headers.Authorization = 'Bearer ' + val;
+      dispatch(fetchCartItems());
       AsyncStorage.getItem(USER_KEY).then(user => {
         dispatch(setUser(JSON.parse(user)));
         dispatch(getUserData());
