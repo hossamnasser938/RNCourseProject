@@ -1,5 +1,4 @@
 import {ScaledSheet} from 'react-native-size-matters';
-import {TINT_COLOR} from '../../utils/colors';
 
 const styles = ScaledSheet.create({
   container: {
@@ -9,9 +8,6 @@ const styles = ScaledSheet.create({
   },
   input: {
     marginBottom: '20@vs',
-  },
-  seletedaddress: {
-    color: TINT_COLOR,
   },
 });
 

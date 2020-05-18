@@ -114,6 +114,7 @@ export default highOrderReducer(
     },
     {
       requestEndPoint: 'order',
+      requestMethod: 'get',
       baseActionType: 'getOrders',
     },
   ],

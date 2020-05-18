@@ -110,6 +110,7 @@ export const addAddress = ({name, phone, city, area, street, building}) => {
       .post('/address', {name, phone, city, area, street, building})
       .then(res => {
         dispatch(getUserData());
+        dispatch(selectAddress(res.data._id));
       });
   };
 };

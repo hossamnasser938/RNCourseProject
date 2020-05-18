@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {Input} from '../../components/Input';
 import {AppButton} from '../../components/AppButton';
 import {addAddress} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
-import {selectAddress} from '../../redux/actions';
+import {Address} from '../../components/Address';
 import styles from './styles';
 
 export function AddAddressScreen(props) {
@@ -17,7 +17,6 @@ export function AddAddressScreen(props) {
   const error = useSelector(state => state.auth.addAddressError);
   const success = useSelector(state => state.auth.addAddressSuccess);
   const user = useSelector(state => state.auth.user);
-  const selectedAddressId = useSelector(state => state.auth.selectedAddressId);
 
   useUpdateEffect(() => {
     showError(error.errorCode);
@@ -94,22 +93,7 @@ export function AddAddressScreen(props) {
         />
 
         {user.addresses.map(address => {
-          return (
-            <Text
-              onPress={() => {
-                dispatch(selectAddress(address._id));
-              }}
-              style={
-                address._id === selectedAddressId ? styles.seletedaddress : {}
-              }>{`
-          name: ${address.name}
-          phone: ${address.phone}
-          city: ${address.city}
-          area: ${address.area}
-          street: ${address.street}
-          building: ${address.building}
-        `}</Text>
-          );
+          return <Address address={address} />;
         })}
       </ScrollView>
 
