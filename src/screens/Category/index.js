@@ -43,6 +43,10 @@ export function CategoryScreen(props) {
   const [selectedCategory, setSelectedCategory] = React.useState(category);
   const dispatch = useDispatch();
 
+  const isFetchingProducts = useSelector(
+    state => state.home.isFetchingCategoryProducts[selectedCategory._id],
+  );
+
   const childrenCategories = useSelector(
     state => state.home.childrenCategories[category._id] || [],
   );
@@ -68,6 +72,8 @@ export function CategoryScreen(props) {
       )}
       <Text style={styles.headerText}>Products</Text>
       <ProductsList
+        isLoading={isFetchingProducts}
+        contentContainerStyle={styles.list}
         data={products}
         onEndReachedThreshold={0.5}
         onEndReached={() => dispatch(fetchCategoryProducts(category))}

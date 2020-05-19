@@ -1,6 +1,16 @@
 import * as ActionTypes from './ActionTypes';
 import axios from 'axios';
 
+const startFetchingCategoryProducts = categoryId => ({
+  type: ActionTypes.START_FETCHING_CATEGORY_PRODUCTS,
+  payload: {categoryId},
+});
+
+const stopFetchingCategoryProducts = categoryId => ({
+  type: ActionTypes.STOP_FETCHING_CATEGORY_PRODUCTS,
+  payload: {categoryId},
+});
+
 export const fetchHomeData = () => {
   return (dispatch, getState) => {
     dispatch(fetchHomeCategories());
@@ -49,6 +59,7 @@ export const fetchCategoryProducts = category => {
     const nextRequestPage = calculatedPage === undefined ? 1 : calculatedPage;
 
     if (nextRequestPage) {
+      dispatch(startFetchingCategoryProducts(category._id));
       axios
         .get(endPoint, {params: {id: category._id, page: nextRequestPage}})
         .then(res => {
@@ -56,10 +67,12 @@ export const fetchCategoryProducts = category => {
 
           const {lastPage, nextPage} = res.data;
           const page = nextPage > lastPage ? null : nextPage;
-          r.log('page', page);
           dispatch(setCategoryProductsPage(category._id, page));
         })
-        .catch(err => {});
+        .catch(err => {})
+        .finally(() => {
+          dispatch(stopFetchingCategoryProducts());
+        });
     }
   };
 };

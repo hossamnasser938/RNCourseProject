@@ -13,14 +13,16 @@ export function ProductsList(props) {
 
   const Loading = () => (isLoading ? <ActivityIndicator /> : null);
 
+  const Empty = () => (!isLoading ? <EmptyList /> : null);
+
   return (
     <FlatList
-      {...props}
       contentContainerStyle={styles.list}
       renderItem={renderProduct}
       numColumns={2}
       ListFooterComponent={Loading}
-      ListEmptyComponent={EmptyList}
+      ListEmptyComponent={Empty}
+      {...props}
     />
   );
 }

@@ -10,6 +10,7 @@ const initialState = {
   categoryProducts: {},
   categoryProductsNextPages: {},
   product: null,
+  isFetchingCategoryProducts: {},
 };
 
 function homeReducer(state = initialState, action) {
@@ -67,6 +68,24 @@ function homeReducer(state = initialState, action) {
       return {
         ...state,
         product: action.payload.data.product,
+      };
+
+    case ActionTypes.START_FETCHING_CATEGORY_PRODUCTS:
+      return {
+        ...state,
+        isFetchingCategoryProducts: {
+          ...state.isFetchingCategoryProducts,
+          [action.payload.categoryId]: true,
+        },
+      };
+
+    case ActionTypes.STOP_FETCHING_CATEGORY_PRODUCTS:
+      return {
+        ...state,
+        isFetchingCategoryProducts: {
+          ...state.isFetchingCategoryProducts,
+          [action.payload.categoryId]: false,
+        },
       };
 
     default:

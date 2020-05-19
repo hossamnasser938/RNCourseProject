@@ -10,6 +10,7 @@ const styles = ScaledSheet.create({
     color: '#bbb',
     marginTop: '5@vs',
   },
+  list: {},
 });
 
 export default styles;

@@ -22,7 +22,10 @@ export function HomeStack(props) {
       <Stack.Screen
         name="CategoryScreen"
         component={CategoryScreen}
-        options={{headerBackTitleVisible: false}}
+        options={({route}) => ({
+          headerBackTitleVisible: false,
+          title: route.params.category.name,
+        })}
       />
     </Stack.Navigator>
   );

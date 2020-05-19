@@ -37,8 +37,9 @@ const styles = ScaledSheet.create({
     flex: 1,
   },
   buttonWrapper: {
-    flex: 1,
     justifyContent: 'flex-end',
+    paddingHorizontal: '20@s',
+    paddingVertical: '5@vs',
   },
   descriptionText: {
     fontSize: '18@s',
