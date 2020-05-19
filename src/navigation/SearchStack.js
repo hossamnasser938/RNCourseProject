@@ -16,7 +16,7 @@ export function SearchStack(props) {
       <Stack.Screen
         name="ProductScreen"
         component={ProductScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

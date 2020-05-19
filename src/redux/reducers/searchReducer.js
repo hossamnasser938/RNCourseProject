@@ -1,4 +1,5 @@
 import * as ActionTypes from '../actions/ActionTypes';
+import {highOrderReducer} from 'api-request-biolerplate-actions';
 
 const initialState = {
   products: [],
@@ -24,4 +25,8 @@ function searchReducer(state = initialState, action) {
   }
 }
 
-export default searchReducer;
+export default highOrderReducer(
+  initialState,
+  [{requestEndPoint: 'product/search', baseActionType: 'fetchSearchProducts'}],
+  searchReducer,
+);

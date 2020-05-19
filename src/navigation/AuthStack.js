@@ -16,7 +16,7 @@ export function AuthStack(props) {
       <Stack.Screen
         name="ConfirmationCodeScreen"
         component={ConfirmationCodeScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerBackTitleVisible: false, title: 'Confirmation'}}
       />
     </Stack.Navigator>
   );

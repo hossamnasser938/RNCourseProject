@@ -18,17 +18,17 @@ export function AccountStack(props) {
       <Stack.Screen
         name="AddAddressScreen"
         component={AddAddressScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerBackTitleVisible: false, title: 'Add Address'}}
       />
       <Stack.Screen
         name="UpdateAccountScreen"
         component={UpdateAccountScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerBackTitleVisible: false, title: 'Update Account'}}
       />
       <Stack.Screen
         name="OrdersScreen"
         component={OrdersScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerBackTitleVisible: false, title: 'Orders'}}
       />
     </Stack.Navigator>
   );

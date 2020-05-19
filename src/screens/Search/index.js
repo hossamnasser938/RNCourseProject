@@ -17,6 +17,9 @@ export function SearchScreen(props) {
   const [products, setProducts] = React.useState([]);
   const dispatch = useDispatch();
   const toBeAppendedProducts = useSelector(state => state.search.products);
+  const isFetchingPoducts = useSelector(
+    state => state.search.fetchSearchProductsLoading,
+  );
 
   useUpdateEffect(() => {
     setProducts(products.concat(toBeAppendedProducts));
@@ -32,7 +35,8 @@ export function SearchScreen(props) {
 
   useUpdateEffect(() => {
     setProducts([]);
-    fetchProducts();
+
+    input && fetchProducts();
   }, [input]);
 
   return (
@@ -44,11 +48,14 @@ export function SearchScreen(props) {
         onChangeText={setInput}
         wrapperStyle={styles.input}
       />
-      <ProductsList
-        data={products}
-        onEndReachedThreshold={0.5}
-        onEndReached={continueFetchProducts}
-      />
+      {input ? (
+        <ProductsList
+          data={products}
+          onEndReachedThreshold={0.5}
+          onEndReached={continueFetchProducts}
+          isLoading={isFetchingPoducts}
+        />
+      ) : null}
     </SafeAreaView>
   );
 }

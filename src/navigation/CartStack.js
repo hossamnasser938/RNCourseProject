@@ -18,17 +18,17 @@ export function CartStack(props) {
       <Stack.Screen
         name="ProductScreen"
         component={ProductScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="CheckoutScreen"
         component={CheckoutScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerBackTitleVisible: false, title: 'Checkout'}}
       />
       <Stack.Screen
         name="AddAddressScreen"
         component={AddAddressScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerBackTitleVisible: false, Title: 'Add Address'}}
       />
     </Stack.Navigator>
   );
