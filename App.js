@@ -15,6 +15,7 @@ import {
   selectAddress,
   fetchCartItems,
 } from './src/redux/actions';
+import SplashScreen from 'react-native-splash-screen';
 
 function App(props) {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App(props) {
   React.useEffect(() => {
     AsyncStorage.getItem(TOKEN_KEY).then(val => {
       dispatch(setToken(val));
+      SplashScreen.hide();
       if (val) {
         axios.defaults.headers.Authorization = 'Bearer ' + val;
         dispatch(fetchCartItems());
