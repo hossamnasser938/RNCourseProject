@@ -49,7 +49,7 @@ export function UpdateAccountScreen(props) {
 
       <AppButton
         title="SAVE"
-        onPress={() => dispatch(updateUserName(input))}
+        onPress={() => dispatch(updateUserName(input.value))}
         isLoading={isLoading}
         disabled={!input.isValid}
       />

@@ -13,14 +13,23 @@ export function AccountStack(props) {
       <Stack.Screen
         name="AccountScreen"
         component={AccountScreen}
-        options={{headerShown: false}}
+        options={{headerShown: false, headerBackTitleVisible: false}}
       />
-      <Stack.Screen name="AddAddressScreen" component={AddAddressScreen} />
+      <Stack.Screen
+        name="AddAddressScreen"
+        component={AddAddressScreen}
+        options={{headerBackTitleVisible: false}}
+      />
       <Stack.Screen
         name="UpdateAccountScreen"
         component={UpdateAccountScreen}
+        options={{headerBackTitleVisible: false}}
       />
-      <Stack.Screen name="OrdersScreen" component={OrdersScreen} />
+      <Stack.Screen
+        name="OrdersScreen"
+        component={OrdersScreen}
+        options={{headerBackTitleVisible: false}}
+      />
     </Stack.Navigator>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, ActivityIndicator, Text} from 'react-native';
 import {Input} from '../../components/Input';
 import {AppButton} from '../../components/AppButton';
 import {addAddress} from '../../redux/actions';
@@ -13,7 +13,8 @@ export function AddAddressScreen(props) {
   const [inputs, setInputs] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.auth.addAddressLoading);
+  const isAddingAddress = useSelector(state => state.auth.addAddressLoading);
+  const isFetchingUserData = useSelector(state => state.auth.addAddressLoading);
   const error = useSelector(state => state.auth.addAddressError);
   const success = useSelector(state => state.auth.addAddressSuccess);
   const user = useSelector(state => state.auth.user);
@@ -92,6 +93,10 @@ export function AddAddressScreen(props) {
           value={inputs.building || ''}
         />
 
+        <Text style={styles.headerTitle}>Added Addresses</Text>
+
+        {isFetchingUserData ? <ActivityIndicator /> : null}
+
         {user.addresses.map(address => {
           return <Address address={address} />;
         })}
@@ -102,7 +107,7 @@ export function AddAddressScreen(props) {
         onPress={() => {
           dispatch(addAddress(inputs));
         }}
-        isLoading={isLoading}
+        isAddingAddress={isAddingAddress}
         disabled={!isValid}
       />
     </View>

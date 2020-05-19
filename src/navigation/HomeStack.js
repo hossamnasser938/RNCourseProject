@@ -19,7 +19,11 @@ export function HomeStack(props) {
         component={ProductScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+      <Stack.Screen
+        name="CategoryScreen"
+        component={CategoryScreen}
+        options={{headerBackTitleVisible: false}}
+      />
     </Stack.Navigator>
   );
 }

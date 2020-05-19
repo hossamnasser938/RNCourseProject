@@ -13,7 +13,11 @@ export function SearchStack(props) {
         component={SearchScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="ProductScreen" component={ProductScreen} />
+      <Stack.Screen
+        name="ProductScreen"
+        component={ProductScreen}
+        options={{headerBackTitleVisible: false}}
+      />
     </Stack.Navigator>
   );
 }

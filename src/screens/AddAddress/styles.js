@@ -9,6 +9,9 @@ const styles = ScaledSheet.create({
   input: {
     marginBottom: '20@vs',
   },
+  headerTitle: {
+    fontSize: 22,
+  },
 });
 
 export default styles;

@@ -1,26 +1,33 @@
 import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView, ActivityIndicator} from 'react-native';
 import {PlatformTouchable} from '../../components/PlatformTouchable';
 import {IonIcon} from '../../components/IonIcon';
 import {useSelector, useDispatch} from 'react-redux';
 import {logout} from '../../redux/actions';
 import styles from './styles';
 
-function renderInfoSection(user, navigation) {
+function renderInfoSection(user, navigation, isFetchingUser) {
   return (
     <View style={styles.infoSection}>
       <IonIcon name="person" style={styles.personIcon} />
       <View style={styles.verticalLine} />
-      <View>
-        <Text
-          onPress={() => {
-            !user.name && navigation.navigate('UpdateAccountScreen');
-          }}
-          style={[styles.infoText, !user.name && styles.hitToEnterNameButton]}>
-          {user.name || 'HIT to enter name'}
-        </Text>
-        <Text style={styles.infoText}>{user.phone}</Text>
-      </View>
+      {isFetchingUser ? (
+        <ActivityIndicator />
+      ) : (
+        <View>
+          <Text
+            onPress={() => {
+              !user.name && navigation.navigate('UpdateAccountScreen');
+            }}
+            style={[
+              styles.infoText,
+              !user.name && styles.hitToEnterNameButton,
+            ]}>
+            {user.name || 'HIT to enter name'}
+          </Text>
+          <Text style={styles.infoText}>{user.phone}</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -58,6 +65,7 @@ function renderButtonsSection(navigation, onDispatchLogout) {
 export function AccountScreen(props) {
   const {navigation} = props;
   const user = useSelector(state => state.auth.user);
+  const isFetchingUser = useSelector(state => state.auth.userDataLoading);
   const dispatch = useDispatch();
 
   const onDispatchLogout = () => dispatch(logout());
@@ -65,7 +73,7 @@ export function AccountScreen(props) {
   return (
     <SafeAreaView style={styles.outerContainer}>
       <View style={styles.container}>
-        {renderInfoSection(user, navigation)}
+        {renderInfoSection(user, navigation, isFetchingUser)}
         {renderButtonsSection(navigation, onDispatchLogout)}
       </View>
     </SafeAreaView>

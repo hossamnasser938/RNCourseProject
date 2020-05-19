@@ -24,12 +24,14 @@ function App(props) {
   React.useEffect(() => {
     AsyncStorage.getItem(TOKEN_KEY).then(val => {
       dispatch(setToken(val));
-      axios.defaults.headers.Authorization = 'Bearer ' + val;
-      dispatch(fetchCartItems());
-      AsyncStorage.getItem(USER_KEY).then(user => {
-        dispatch(setUser(JSON.parse(user)));
-        dispatch(getUserData());
-      });
+      if (val) {
+        axios.defaults.headers.Authorization = 'Bearer ' + val;
+        dispatch(fetchCartItems());
+        AsyncStorage.getItem(USER_KEY).then(user => {
+          dispatch(setUser(JSON.parse(user)));
+          dispatch(getUserData());
+        });
+      }
     });
   }, [token]);
 
