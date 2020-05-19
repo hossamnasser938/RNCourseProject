@@ -23,6 +23,8 @@ function EmptyCart() {
   );
 }
 
+const keyExtractor = item => item._id;
+
 function renderCartItem({item}) {
   return <CartItem cartItem={item} />;
 }
@@ -32,6 +34,7 @@ function renderCartItems(cartItems, isFetchingItems) {
     <ActivityIndicator />
   ) : (
     <FlatList
+      keyExtractor={keyExtractor}
       contentContainerStyle={styles.list}
       data={cartItems}
       renderItem={renderCartItem}

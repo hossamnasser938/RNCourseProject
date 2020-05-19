@@ -26,13 +26,17 @@ function renderChildrenCategories(
   selectedCategory,
   setSelectedCategory,
 ) {
+  const renderItem = React.useCallback(
+    ({item}) =>
+      renderChildrenCategory(item, selectedCategory, setSelectedCategory),
+    [selectedCategory, setSelectedCategory],
+  );
+
   return (
     <FlatList
       horizontal={true}
       data={childrenCategories}
-      renderItem={({item}) =>
-        renderChildrenCategory(item, selectedCategory, setSelectedCategory)
-      }
+      renderItem={renderItem}
       keyExtractor={keyExtractor}
     />
   );

@@ -8,15 +8,23 @@ function renderProduct({item}) {
   return <Product product={item} />;
 }
 
+const keyExtractor = item => item._id;
+
 export function ProductsList(props) {
   const {isLoading} = props;
 
-  const Loading = () => (isLoading ? <ActivityIndicator /> : null);
+  const Loading = React.useCallback(
+    () => (isLoading ? <ActivityIndicator /> : null),
+    [isLoading],
+  );
 
-  const Empty = () => (!isLoading ? <EmptyList /> : null);
+  const Empty = React.useCallback(() => (!isLoading ? <EmptyList /> : null), [
+    isLoading,
+  ]);
 
   return (
     <FlatList
+      keyExtractor={keyExtractor}
       contentContainerStyle={styles.list}
       renderItem={renderProduct}
       numColumns={2}

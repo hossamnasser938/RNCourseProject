@@ -12,11 +12,18 @@ function renderCategory({item}) {
   return <Category category={item} />;
 }
 
+const keyExtractor = item => item._id;
+
 function renderCategoriesList(categories, isFetchingCategories) {
   return isFetchingCategories ? (
     <ActivityIndicator />
   ) : (
-    <FlatList data={categories} renderItem={renderCategory} horizontal={true} />
+    <FlatList
+      data={categories}
+      renderItem={renderCategory}
+      horizontal={true}
+      keyExtractor={keyExtractor}
+    />
   );
 }
 

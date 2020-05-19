@@ -12,15 +12,18 @@ function renderOrder({item}) {
   return <Order order={item} />;
 }
 
-function renderOrders(orders, isFetchingOrders) {
-  const Empty = () => (!isFetchingOrders ? <EmptyList /> : null);
+function keyExtractor(order) {
+  return order._id;
+}
 
+function renderOrders(orders, isFetchingOrders, Empty) {
   return (
     <FlatList
       contentContainerStyle={styles.list}
       data={orders}
       renderItem={renderOrder}
       ListEmptyComponent={Empty}
+      keyExtractor={keyExtractor}
     />
   );
 }
@@ -30,6 +33,11 @@ export function OrdersScreen(props) {
   const error = useSelector(state => state.auth.getOrdersError);
   const isFetchingOrders = useSelector(state => state.auth.getOrdersLoading);
   const orders = useSelector(state => state.auth.orders);
+
+  const Empty = React.useCallback(
+    () => (!isFetchingOrders ? <EmptyList /> : null),
+    [isFetchingOrders],
+  );
 
   React.useEffect(() => {
     dispatch(getOrders());
@@ -44,7 +52,7 @@ export function OrdersScreen(props) {
       {isFetchingOrders ? (
         <ActivityIndicator />
       ) : (
-        renderOrders(orders, isFetchingOrders)
+        renderOrders(orders, isFetchingOrders, Empty)
       )}
     </View>
   );
