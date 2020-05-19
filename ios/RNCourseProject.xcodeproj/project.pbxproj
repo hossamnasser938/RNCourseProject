@@ -19,6 +19,7 @@
 		2FCFCD47C2526B1BD968F1F2 /* libPods-RNCourseProject-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A58F8C18388221C8B4E5CEE4 /* libPods-RNCourseProject-tvOS.a */; };
 		470097D252D4F0541DF2703E /* libPods-RNCourseProject-RNCourseProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F765DB2E3FD624E3C870D15 /* libPods-RNCourseProject-RNCourseProjectTests.a */; };
 		9D23051A50A45070C5936E75 /* libPods-RNCourseProject-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E757077865E959B6DFAE1BB /* libPods-RNCourseProject-tvOSTests.a */; };
+		9FB071B22473DBC4007FB10C /* launch_screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9FB071B12473DBC4007FB10C /* launch_screen.jpg */; };
 		BD9C1D74AB02F632FDEE1F1C /* libPods-RNCourseProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F1B8899DF2B781C6741B2 /* libPods-RNCourseProject.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		817851F512A5C3F0FBE168AF /* Pods-RNCourseProject-RNCourseProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCourseProject-RNCourseProjectTests.release.xcconfig"; path = "Target Support Files/Pods-RNCourseProject-RNCourseProjectTests/Pods-RNCourseProject-RNCourseProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		854F1B8899DF2B781C6741B2 /* libPods-RNCourseProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCourseProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8811B3E471403549C79B74D5 /* Pods-RNCourseProject-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCourseProject-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RNCourseProject-tvOS/Pods-RNCourseProject-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9FB071B12473DBC4007FB10C /* launch_screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launch_screen.jpg; sourceTree = "<group>"; };
 		A58F8C18388221C8B4E5CEE4 /* libPods-RNCourseProject-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCourseProject-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8764C4A042D4A07D1AE9FFF /* Pods-RNCourseProject-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCourseProject-tvOS.release.xcconfig"; path = "Target Support Files/Pods-RNCourseProject-tvOS/Pods-RNCourseProject-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		CC704027FDD093604F56DB23 /* Pods-RNCourseProject-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCourseProject-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RNCourseProject-tvOSTests/Pods-RNCourseProject-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* RNCourseProject */ = {
 			isa = PBXGroup;
 			children = (
+				9FB071B12473DBC4007FB10C /* launch_screen.jpg */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -339,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB071B22473DBC4007FB10C /* launch_screen.jpg in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
