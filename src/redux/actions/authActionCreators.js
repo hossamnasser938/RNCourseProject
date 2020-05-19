@@ -48,7 +48,8 @@ export const signIn = phone => {
       .post('/verify', {phone})
       .then(res => {
         dispatch(signInSuccess());
-        console.log(res.data);
+        // console.log(res.data);
+        alert('code: ' + res.data.code);
       })
       .catch(err => {
         dispatch(signInFaliure(UNEXPECTED_ERROR_CODE));
