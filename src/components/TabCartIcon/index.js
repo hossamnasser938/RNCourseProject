@@ -14,9 +14,11 @@ export function TabCartIcon(props) {
         name="cart"
         style={[styles.icon, focused && styles.focusedIcon]}
       />
-      <View style={styles.badgeWrapper}>
-        <Text style={styles.badgeText}>{cartItemsCount}</Text>
-      </View>
+      {cartItemsCount ? (
+        <View style={styles.badgeWrapper}>
+          <Text style={styles.badgeText}>{cartItemsCount}</Text>
+        </View>
+      ) : null}
     </View>
   );
 }

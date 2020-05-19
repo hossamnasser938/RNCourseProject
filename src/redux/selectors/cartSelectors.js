@@ -7,5 +7,5 @@ export function totalSelector(state) {
     return acc + getActualPrice(item.product.price, item.product.discount);
   }, 0);
 
-  return total;
+  return total.toFixed(2);
 }

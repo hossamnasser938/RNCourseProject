@@ -20,6 +20,15 @@ const styles = ScaledSheet.create({
   checkoutText: {
     fontSize: '16@s',
   },
+  list: {
+    flex: 1,
+  },
+  cartIcon: {
+    fontSize: 96,
+  },
+  emptyText: {
+    fontSize: 32,
+  },
 });
 
 export default styles;

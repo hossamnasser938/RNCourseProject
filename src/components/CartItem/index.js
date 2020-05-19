@@ -6,6 +6,7 @@ import {Card} from '../Card';
 import {Price} from '../Price';
 import {AddToCartButton} from '../AddToCartButton';
 import {IMAGES_URL} from '../../utils/constants';
+import {getActualPrice} from '../../utils/helperFunctions';
 import styles from './styles';
 
 export function CartItem(props) {
@@ -31,7 +32,14 @@ export function CartItem(props) {
             price={cartItem.product.price}
             discount={cartItem.product.discount}
           />
-          <AddToCartButton />
+          <AddToCartButton
+            productId={cartItem.product._id}
+            cost={getActualPrice(
+              cartItem.product.price,
+              cartItem.product.discount,
+            )}
+            count={cartItem.product.increaseCount}
+          />
         </View>
       </PlatformTouchable>
     </Card>
