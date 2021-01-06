@@ -16,7 +16,7 @@
     "@react-navigation/native": "^5.2.1",
     "@react-navigation/stack": "^5.2.16",
     "api-request-biolerplate-actions": "^1.0.9",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "events": "^3.1.0",
     "react": "16.11.0",
     "react-native": "0.62.2",
